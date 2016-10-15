@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+*{
+    padding: 0;
+    margin:0;
+}
+
+body{
+    font-size: 100%;
+}
+
+header, section, footer, aside, nav, main, article, figure, div {
+    display: flex; 
+    font-family: 'Noto Sans', sans-serif;
+}
+
+header{
+    background: yellow;
+}
+
+nav{
+    background: azure;
+}
+
+nav ul{
+    display: inline-block;
+    list-style: none;
+}
+
+nav ul>li{
+    display: inline-block;
+    padding-right: 1em;
+}
+
+article{
+    background: lightgrey;
+    flex: 2;
+    flex-direction: column;
+}
+
+section{
+    background: slategray;
+}
+
+aside{
+    background: deeppink;
+    flex:1;
+}
+
+footer{
+    background: black;
+    color: white;
+}
+
+/*  css test */
+li{
+    color: blue;
+}
+
+li.item{
+    color: red;
+}
+
+ul li ul li{
+    color: green;
+}
+
+#the-item{
+    color: black;
+}
