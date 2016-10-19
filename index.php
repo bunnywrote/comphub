@@ -14,10 +14,7 @@
             <ul>
                 <li>
                     <ul>
-                        <li>First</li>
-                        <li id="the-item">Second</li>
-                        <li class="item">Third</li>
-                        <li class="item" id="the-item">Fourth</li>
+                        <?php require_once('navigation.php');?>
                     </ul>
                 </li>
             </ul>
