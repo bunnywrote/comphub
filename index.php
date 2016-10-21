@@ -14,9 +14,12 @@
     <body>
         <header>
             <h1>CompHub</h1>
-            <ul>
-                <li>
-            <ul>
+
+            <?php var_dump($_GET)?>
+            
+            <ul class="langs">
+                <?php getLanguages($language)?>
+            </ul>
         </header>
         <nav>
             <ul>

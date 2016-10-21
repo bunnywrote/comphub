@@ -31,9 +31,22 @@
 
     function getLanguages($language){
         $defaultLanguage = "en";
+
         $supportedLanguages = array(
             "en" => "English",
             "de" => "Deutsch",
             "fr" => "Français"
         );
+
+        if(!array_key_exists($language, $supportedLanguages))
+            $language = $defaultLanguage; 
+
+        foreach ($supportedLanguages as $key => $value) {
+            if($key == $language){
+                add_param($_SERVER['PHP_SELF'], 'lang', $language);
+                echo '<li><span>'.$value.'</span></li>';
+            }
+            else            
+                echo '<li><a href="/?lang='.$key.'">'.$value.'</a></li>';
+        }
     }
