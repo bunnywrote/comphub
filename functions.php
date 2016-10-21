@@ -1,4 +1,6 @@
 <?php
+    $defaultLanguage = "en";
+
     function add_param($url, $name, $value){
         if(strpos($url, '?') !== false) 
             $sep = '&';
@@ -14,24 +16,24 @@
     }
 
     function navigation($language, $pageId){
+        
+        $localizer = getLocalizer($language);
 
-        //todo language und pageId beruecksichtigen
         $navLinks = array(
             "PC" => "/pc",
             "Server" => "/server",
-            "Periferie" => "/periferie",
+            "Peripherie" => "/peripherie",
             "Components" => "/components",
             "Software" => "/software",
         );
 
+        //todo language und pageId beruecksichtigen
         foreach ($navLinks as $key => $value) {
-            echo '<li><a href="'.$value.'">'.$key.'</a></li>';
+            echo '<li><a href="'.$value.'">'.$localizer[$key].'</a></li>';
         }
     }
 
     function getLanguages($language){
-        $defaultLanguage = "en";
-
         $supportedLanguages = array(
             "en" => "English",
             "de" => "Deutsch",
@@ -49,4 +51,20 @@
             else            
                 echo '<li><span class="flag '.$key.'"></span><a href="/?lang='.$key.'">'.$value.'</a></li>';
         }
+    }
+
+    function getLocalizer($lang){
+        $file = file_get_contents('Resources/navigation/'.$lang.'.json');
+
+        if($file)
+            $result = json_decode($file, true);
+
+        return $result;
+        // debug_dump($result);
+    }
+
+    function debug_dump($var){
+        echo "<pre>";
+        var_dump($var);
+        echo "</pre>";
     }
