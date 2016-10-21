@@ -9,7 +9,8 @@
         <title>Web Shop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="assets/stylesheets/flags32.css">
+        <link rel="stylesheet" href="assets/stylesheets/styles.css">
     </head>
     <body>
         <header>
@@ -17,7 +18,7 @@
 
             <?php var_dump($_GET)?>
             
-            <ul class="langs">
+            <ul class="langs f32">
                 <?php getLanguages($language)?>
             </ul>
         </header>

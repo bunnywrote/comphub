@@ -44,9 +44,9 @@
         foreach ($supportedLanguages as $key => $value) {
             if($key == $language){
                 add_param($_SERVER['PHP_SELF'], 'lang', $language);
-                echo '<li><span>'.$value.'</span></li>';
+                echo '<li><span class="flag '.$key.'"></span><span>'.$value.'</span></li>';
             }
             else            
-                echo '<li><a href="/?lang='.$key.'">'.$value.'</a></li>';
+                echo '<li><span class="flag '.$key.'"></span><a href="/?lang='.$key.'">'.$value.'</a></li>';
         }
     }

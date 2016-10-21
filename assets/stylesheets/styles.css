@@ -30,6 +30,12 @@ header .langs{
 .langs span{
     color: black;
     font-weight: bold;
+    padding-right: 1em;
+}
+
+.langs li{
+    display: flex;
+    align-items: center;
 }
 
 .langs a{
