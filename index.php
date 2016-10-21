@@ -14,18 +14,15 @@
     <body>
         <header>
             <h1>CompHub</h1>
-            <pre>
-                <?php
-                    // add_param($_SERVER['PHP_SELF'], 'lang', 'en'); 
-                    // var_dump($_SERVER)
-                ?>
-            </pre>
+            <ul>
+                <li>
+            <ul>
         </header>
         <nav>
             <ul>
                 <li>
                     <ul>
-                        <?php require_once('navigation.php');?>
+                        <?php navigation(null, null)?>
                     </ul>
                 </li>
             </ul>

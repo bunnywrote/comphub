@@ -14,6 +14,8 @@
     }
 
     function navigation($language, $pageId){
+
+        //todo language und pageId beruecksichtigen
         $navLinks = array(
             "PC" => "/pc",
             "Server" => "/server",
@@ -25,4 +27,13 @@
         foreach ($navLinks as $key => $value) {
             echo '<li><a href="'.$value.'">'.$key.'</a></li>';
         }
+    }
+
+    function getLanguages($language){
+        $defaultLanguage = "en";
+        $supportedLanguages = array(
+            "en" => "English",
+            "de" => "Deutsch",
+            "fr" => "Français"
+        );
     }
