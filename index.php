@@ -1,3 +1,8 @@
+<?php
+    include('functions.php');
+    $language = get_param('lang', 'en');
+    $pageId = get_param('id', 0);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +14,12 @@
     <body>
         <header>
             <h1>CompHub</h1>
+            <pre>
+                <?php
+                    // add_param($_SERVER['PHP_SELF'], 'lang', 'en'); 
+                    // var_dump($_SERVER)
+                ?>
+            </pre>
         </header>
         <nav>
             <ul>
