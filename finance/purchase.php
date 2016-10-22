@@ -1,5 +1,17 @@
 <?php
     include('purchaseConfirm.php');
+    
+    var_dump($_GET);
+
+    if(empty($_GET['price']) || empty($_GET['count'])){
+        // go to previous page if GET is empty
+        // TODO auch beim Reload sollte funktionieren
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+    
+    function getTotalPrice(){
+        return $_GET['price'] * $_GET['count'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +25,14 @@
     <body>
         <form action="purchaseConfirm.php"
             method="post">
+            <div>
+                <p><h2>Information</h2></p>
+                <p>Price:<?= ' '.$_GET['price'].' CHF'?></p>
+                <p><input type="hidden" name="price" value=<?= '"'.$_GET['price'].'"'?>></p>
+                <p>Count:<?= ' '.$_GET['count']?></p>
+                <p><input type="hidden" name="count" value=<?= '"'.$_GET['count'].'"'?>></p>
+                <p>Total price:<?= ' '.getTotalPrice()?></p>
+                <p><input type="hidden" name="totalPrice" value=<?= '"'.getTotalPrice().'"'?>></p>            </div>
             <div>
                 <p><h2>Shipping Method</h2></p>
                 <!-- The same name attribute, so only 1 choice at the time -->

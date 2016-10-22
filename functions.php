@@ -67,14 +67,14 @@
                         <p>Article specification</p>      
                     </div>
                     <div class="article-buy">
-                        <form action="purchase-test.php" method="get">
+                        <form action="/finance/purchase.php" method="get">
                             <p><label>Count</label></p>
                             <p>
                                 <input type="number" name="count" min="1" value="1" required>
                             </p>
                             <input type="hidden" name="price" value="'.getPrice($x).'"
                             <input type="hidden" name="id" value="'.$x.'">
-                            <input type="submit" value="Buy">                    
+                            <input class="btn" type="submit" value="Buy">                    
                         </form>
                     </div>
                 </article>

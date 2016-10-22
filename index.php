@@ -33,20 +33,32 @@
                 <?php products();?>
             </section>
             <aside>
-                <form action="functions.php" method="post">
-                    <p>
-                        <label>Name</label>
-                        <input type="text" name="name">                
-                    </p>
-                    <p>
-                        <label>Password</label>
-                        <input type="password" name="password">                
-                    </p>
-                    <input type="submit" name="Send">
-                </form>
+                <div class="user-login">
+                    <form action="login.php" method="post">
+                        <div class="login-input">      
+                            <input name="name" type="text" placeholder="Name" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                        </div>
+                        <div class="login-input">      
+                            <input name="password" type="password" placeholder="Password" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                        </div>
+                        <input class="btn" type="submit" name="Send">
+                    </form>
+                </div>
             </aside>
         </main>
 
-        <footer>footer</footer>
+        <footer>
+            <div class="footer-block">
+                <h4>Kontakt</h4>
+                <ul>
+                    
+                </ul>
+            </div>
+            <div class="footer-block"></div>
+        </footer>
     </body>
 </html>

@@ -11,3 +11,12 @@
 
         echo $totalPrice;
     }
+?>
+<ul>
+    <li>
+        <?= $_GET['price']?>
+    </li>
+        <li>
+        <?= $_GET['count']?>
+    </li>
+<ul>
