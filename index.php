@@ -28,20 +28,25 @@
                 </li>
             </ul>
         </nav>
-        <section>
-            <article>
-                <div>
-                    <h2>Article #1</h2>
-                </div>
-                <div>
-                    <h2>Article #2</h2>
-                </div>
-                <div>
-                    <h2>Article #3</h2>
-                </div>
-            </article>
-            <aside>aside</aside>
-        </section>
+        <main>
+            <section>
+                <?php products();?>
+            </section>
+            <aside>
+                <form action="functions.php" method="post">
+                    <p>
+                        <label>Name</label>
+                        <input type="text" name="name">                
+                    </p>
+                    <p>
+                        <label>Password</label>
+                        <input type="password" name="password">                
+                    </p>
+                    <input type="submit" name="Send">
+                </form>
+            </aside>
+        </main>
+
         <footer>footer</footer>
     </body>
 </html>

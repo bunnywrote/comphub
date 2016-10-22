@@ -53,6 +53,39 @@
         }
     }
 
+    function products(){
+
+        for ($x = 1; $x <= 10; $x++) {
+            echo '
+                <article>
+                    <div class="article-image">
+                        <image src="assets/images/placeholder.png">
+                    </div>
+                    <div class="article-description">
+                        <span><h2>Article #'.$x.'</h2></span>
+                        <span>'.getPrice($x).' CHF</span>
+                        <p>Article specification</p>      
+                    </div>
+                    <div class="article-buy">
+                        <form action="purchase-test.php" method="get">
+                            <p><label>Count</label></p>
+                            <p>
+                                <input type="number" name="count" min="1" value="1" required>
+                            </p>
+                            <input type="hidden" name="price" value="'.getPrice($x).'"
+                            <input type="hidden" name="id" value="'.$x.'">
+                            <input type="submit" value="Buy">                    
+                        </form>
+                    </div>
+                </article>
+            ';
+        }
+    }
+
+    function getPrice($x){
+        return $x*99;
+    }
+
     function getLocalizer($lang){
         $file = file_get_contents('Resources/navigation/'.$lang.'.json');
 
