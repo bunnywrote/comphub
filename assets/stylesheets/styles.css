@@ -56,14 +56,62 @@ nav ul>li{
     padding-right: 1em;
 }
 
-article{
-    background: lightgrey;
-    flex: 2;
-    flex-direction: column;
+main{
+
 }
 
 section{
     background: slategray;
+    flex: 2;    
+    flex-direction: column;
+}
+
+article{
+    background: lightgrey;
+    margin-bottom: 5px;
+}
+
+article:last-child{
+    margin: 0;
+}
+
+.article-image img{
+    width: 100px;
+    height: 100px;
+}
+
+.article-description{
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 2;
+}
+
+.article-buy{
+    flex: 1;
+    align-items: center;
+}
+
+.article-buy input[type='submit']{
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.9em;
+    background-color: #0f9d58;
+    color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.article-buy input[type='number']{
+    border: none;
+    width: 120px;
+    height: 32px;
 }
 
 aside{
