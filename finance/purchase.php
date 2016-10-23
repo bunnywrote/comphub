@@ -37,17 +37,17 @@
                 <div class="radioText">
                     <input type="radio" name="payment" value="paycheck">
                     <label>Paycheck</label>
-                    <img src="">
+                    <img class="maestro" src="..\assets\images\maestro.svg">
                 </div>
                 <div class="radioText">
                     <input type="radio" name="payment" value="visa">
                     <label>Visa</label>
-                    <img src="">
+                    <img class="visa" src="..\assets\images\visa.svg">
                 </div>
                 <div class="radioText">
                     <input type="radio" name="payment" value="mastercard">
                     <label>Mastercard</label>
-                    <img src="">
+                    <img class="mastercard" src="..\assets\images\mastercard.svg">
                 </div>
             </div>
 
