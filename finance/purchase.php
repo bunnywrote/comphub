@@ -7,15 +7,15 @@
         // go to previous page if GET is empty
         // TODO auch beim Reload sollte funktionieren
         // Probleme mit HTTP_REFERER
-        if(isset($_GET['referer'])) {
-            $l_sReferer = trim($_GET['referer']);
-        } elseif (isset($_SERVER['HTTP_REFERER'])) {
-            $l_sReferer = base64_encode($_SERVER['HTTP_REFERER']);
-        } else {
-            $l_sReferer = "";
-        }
-        header('Location: ' . $l_sReferer);
-//        header('Location: ' . $_SERVER['HTTP_REFERER']);
+//        if(isset($_GET['referer'])) {
+//            $l_sReferer = trim($_GET['referer']);
+//        } elseif (isset($_SERVER['HTTP_REFERER'])) {
+//            $l_sReferer = base64_encode($_SERVER['HTTP_REFERER']);
+//        } else {
+//            $l_sReferer = "";
+//        }
+//        header('Location: ' . $l_sReferer);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function getTotalPrice(){
