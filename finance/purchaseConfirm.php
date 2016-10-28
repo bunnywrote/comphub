@@ -1,6 +1,7 @@
 <?php
     var_dump($_POST);
     $success = true;
+    $price = $count = '';
     $name = $address = $email = $e_name = $e_address = $e_email = '';
 
     /* validate name */
@@ -38,6 +39,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="..\assets\stylesheets\purchase.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="..\assets\scripts\alertWindow.js" async></script>
     </head>
     <body>
         <div>
@@ -65,14 +68,9 @@
         </div>
 
         <div class="submitButton">
-            <p id="submitButton"><input type="submit" value="Send"></p>
+            <button onclick="alertWindow()">Send</button>
         </div>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
-            $("submitButton").click(function () {
-                $(this).alert("Purchased!");
-            };
-        </script>
     </body>
 </html>
 
