@@ -1,25 +1,56 @@
 <?php
-    include('purchaseConfirm.php');
+//    include('purchaseConfirm.php');
 
     var_dump($_GET);
 
     if(empty($_GET['price']) || empty($_GET['count'])){
         // go to previous page if GET is empty
         // TODO auch beim Reload sollte funktionieren
-        // Probleme mit HTTP_REFERER
-//        if(isset($_GET['referer'])) {
-//            $l_sReferer = trim($_GET['referer']);
-//        } elseif (isset($_SERVER['HTTP_REFERER'])) {
-//            $l_sReferer = base64_encode($_SERVER['HTTP_REFERER']);
-//        } else {
-//            $l_sReferer = "";
-//        }
-//        header('Location: ' . $l_sReferer);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function getTotalPrice(){
         return $_GET['price'] * $_GET['count'];
+    }
+
+    $name = $address = $email = '';
+    $nameErr = $addressErr = $emailErr = '';
+    $success = false;
+
+    /* validate name */
+    if (empty($_POST['name'])) {
+        $nameErr = 'Name is required';
+    } else {
+        $name = $_POST['name'];
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $nameErr = "Only letters and white space allowed";
+        }
+        $success = true;
+    }
+
+    /* validate address */
+    if (empty($_POST['address'])) {
+        $addressErr = 'Please, input an address';
+        $success = false;
+    } else {
+        $address = $_POST['address'];
+        $success = true;
+    }
+
+    /* validate email */
+    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $emailErr = 'Please, input a valid email';
+        $success = false;
+    } else {
+        $email = $_POST['email'];
+        $success = true;
+    }
+
+    /* show success alert */
+    if (!$success) {
+        echo "<p>Success validation</p>";
+        exit;
     }
 ?>
 
@@ -32,10 +63,11 @@
         <link rel="stylesheet" href="..\assets\stylesheets\purchase.css">
     </head>
     <body>
-        <form action="purchaseConfirm.php"
-            method="post">
+<!--        <form action=--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
+<!--            method="post">-->
+        <form method="post">
             <div>
-                <p><h2>Information</h2></p>
+                <p><h2>Bought Articles</h2></p>
                 <p>Price:<?= ' '.$_GET['price'].'  CHF';?></p>
                 <p><input type="hidden" name="price" value=<?= '"'.$_GET['price'].'"';?>></p>
                 <p>Count:<?= ' '.$_GET['count'];?></p>
@@ -44,7 +76,7 @@
                 <p><input type="hidden" name="totalPrice" value=<?= '"'.getTotalPrice().'"';?>></p>
             </div>
             <div>
-                <p><h2>Shipping Method</h2></p>
+                <p><h2 id="shippingMethod">Shipping Method</h2></p>
                 <!-- The same name attribute, so only 1 choice at the time -->
                 <div class="radioText">
                     <input type="radio" name="shipping" value="avion">
@@ -99,15 +131,15 @@
 
                 <p class="dataEntry"><label>Name: </label>
                     <input name="name" value="<?php echo $name;?>"/>
-                    <mark><?php echo $e_name;?></mark>
+                    <mark><?php echo $nameErr;?></mark>
                 </p>
                 <p class="dataEntry"><label>Address: </label>
                     <input name="address" value="<?php echo $address;?>"/>
-                    <mark><?php echo $e_address;?></mark>
+                    <mark><?php echo $addressErr;?></mark>
                 </p>
                 <p class="dataEntry"><label>E-Mail: </label>
                     <input name="email" value="<?php echo $email;?>"/>
-                    <mark><?php echo $e_email;?></mark>
+                    <mark><?php echo $emailErr;?></mark>
                 </p>
             </div>
 
@@ -120,5 +152,3 @@
 
     </body>
 </html>
-
-
