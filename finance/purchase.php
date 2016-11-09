@@ -1,5 +1,5 @@
 <?php
-    include('purchaseConfirm.php');
+//    include('purchaseConfirm.php');
 
     var_dump($_GET);
 

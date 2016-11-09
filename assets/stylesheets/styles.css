@@ -27,6 +27,10 @@ header .langs{
     list-style: none;
 }
 
+.logo{
+    height: 5em;
+}
+
 .langs span{
     color: black;
     font-weight: bold;
@@ -171,8 +175,18 @@ footer{
     color: white;
 }
 
+.footer-block{
+    flex-direction: column;
+    padding: 1em;
+}
+
+.footer-block ul{
+    list-style: none;
+    margin: 1em 0;
+}
+
 /*  css test */
-li{
+/*li{
     color: blue;
 }
 
@@ -186,4 +200,4 @@ ul li ul li{
 
 #the-item{
     color: black;
-}
+}*/
