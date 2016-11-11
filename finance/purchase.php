@@ -1,7 +1,7 @@
 <?php
 //    include('purchaseConfirm.php');
 
-    var_dump($_GET);
+//    var_dump($_GET);
 
     if(empty($_GET['price']) || empty($_GET['count'])){
         // go to previous page if GET is empty
@@ -48,10 +48,10 @@
     }
 
     /* show success alert */
-    if (!$success) {
-        echo "<p>Success validation</p>";
-        exit;
-    }
+//    if (!$success) {
+//        echo "<p>Success validation</p>";
+//        exit;
+//    }
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +65,8 @@
     <body>
 <!--        <form action=--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
 <!--            method="post">-->
-        <form method="post">
+        <form action=<?php echo ('purchaseConfirm.php');?>
+            method="post">
             <div>
                 <p><h2>Bought Articles</h2></p>
                 <p>Price:<?= ' '.$_GET['price'].'  CHF';?></p>
@@ -130,7 +131,7 @@
                 <p><h2 id="dataEntry">Please enter your data</h2></p>
 
                 <p class="dataEntry"><label>Name: </label>
-                    <input name="name" value="<?php echo $name;?>"/>
+                    <input name="name" value="<?= $name;?>"/>
                     <mark><?php echo $nameErr;?></mark>
                 </p>
                 <p class="dataEntry"><label>Address: </label>
