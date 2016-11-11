@@ -1,15 +1,15 @@
 <?php
-class Product extends mysqli {
+
+require_once ("db.php");
+
+class Product {
     protected $name = "products";
-    protected $db;
     private $product_id, $product_name, $product_model, $product_price;
 
-    public function __construct(DB $db)
-    {
-        $this->db = $db;
-    }
+    public function __construct()
+    {}
 
-    public function insertProduct($product_id, $product_name, $product_model, $product_price, $db)
+    public function insertProduct($product_id, $product_name, $product_model, $product_price)
     {
 //        $this->db = $db;
         $this->product_id = $product_id;
@@ -18,7 +18,7 @@ class Product extends mysqli {
         $this->product_price = $product_price;
 
         // prepare statement with placeholders
-        $statement = $db->prepare("INSERT INTO products (product_id, product_name, product_model, product_price) VALUES ($product_id, $product_id, $product_id, $product_price)");
+        $statement = DB::getInstance()->doQuery("INSERT INTO products (product_id, product_name, product_model, product_price) VALUES ($product_id, $product_id, $product_id, $product_price)");
 
         // bind placeholders to parameters: i/ntegers, d/ouble, s/tring, b/lob
         $statement->bind_param('issd', $product_id, $product_name, $product_model, $product_price);
@@ -32,10 +32,10 @@ class Product extends mysqli {
         //TODO implement
     }
 
-    public function getProduct($db)
+    public function getProduct()
     {
         // send a query and get mysqli_result object
-        $result = $db->query("SELECT * FROM products;");
+        $result = DB::getInstance()->query("SELECT * FROM products;");
 
         // get the first result row as associative array
         $row = $result->fetch_assoc();
@@ -48,10 +48,10 @@ class Product extends mysqli {
         $result->close();
     }
 
-    public function getAllProducts($db)
+    public function getAllProducts()
     {
 //        return $this->db::doQuery('SELECT * FROM '.$this->name);
-        $result = $db->query("SELECT * FROM products;");
+        $result = DB::getInstance()->doQuery("SELECT * FROM products;");
         while ($products = $result->fetch_object("Product"))
             echo $products."<br />";
 

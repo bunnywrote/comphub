@@ -17,8 +17,7 @@ class DB {
 
     private static function initConnection(){
         $db = self::getInstance();
-//        $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
-        $db = mysqli_connect(self::HOST, self::USER, self::PW, self::DB_NAME);
+        $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
         
         if(mysqli_connect_errno()){
 //            echo "Failed to connect to MySQL: ".mysqli_connect_error();
@@ -26,8 +25,8 @@ class DB {
             exit();
         }
 
-//        $db->dbConnection->set_charset('utf-8');
-//        return $db;
+        $db->dbConnection->set_charset('utf-8');
+        return $db;
     }
 
     public static function getDbConnection(){
