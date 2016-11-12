@@ -17,8 +17,10 @@ class CategoryController extends Controller{
         $this->getView("Category", $this->template);
     }
 
-        private function mapCategoriesToUrls($categories)
+    private function mapCategoriesToUrls($categories)
     {
+        $result = array();
+        
         //TODO beautify
         foreach($categories as $key => $value){
             switch($_SESSION['lang']){
