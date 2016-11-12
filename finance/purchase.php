@@ -97,10 +97,10 @@
     }
 
     /* show success alert */
-    if (!$success) {
-        echo "<p>Success validation</p>";
-        exit;
-    }
+//    if (!$success) {
+//        echo "<p>Success validation</p>";
+//        exit;
+//    }
 ?>
 
 <!DOCTYPE html>
