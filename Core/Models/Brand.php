@@ -1,11 +1,11 @@
 <?php
 require_once("BaseEntity.php");
 
-class Category extends BaseEntity{
+class Brand extends BaseEntity
+{
+    private static $tableName = "brands";
 
-    private static $tableName = "categories";
-
-    public $id, $nameEN, $nameDE, $nameFR, $parentId; 
+    public $id, $name, $categoryId;
 
     public function __construct()
     {
@@ -13,25 +13,24 @@ class Category extends BaseEntity{
         echo(__CLASS__);
     }
 
-    public static function create(Category $category)
+    public static function create(Brand $brand)
     {
         $query =
-            "INSERT INTO ".self::$tableName." (nameEN, nameDE, nameFR, parentId) VALUES (?,?,?,?);";
+            "INSERT INTO " . self::$tableName . "(name, categoryId) VALUES (?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
-        $success = $preparedQuery->bind_param('sssi', 
-            $category->nameEN, 
-            $category->nameDE, 
-            $category->nameFR, 
-            $category->parentId);
+        $success = $preparedQuery->bind_param(
+            'si',
+            $brand->name,
+            $brand->categoryId
+        );
 
         if(!$success){
             die(DB::getDbConnection()->error);
             return false;
-        } 
+        }
         $preparedQuery->execute();
-        // return self::$db::doQuery($query);
     }
 
     public function update()
@@ -44,14 +43,13 @@ class Category extends BaseEntity{
         return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
     }
 
-    public function getAllProducts()
+    public function getAllAddresses()
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Category"))
-            var_dump($products);
+        while ($brands = $result->fetch_object("Brand"))
+            var_dump($brands);
 
         $result->close();
     }
 }
-?>

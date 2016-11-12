@@ -1,11 +1,11 @@
 <?php
 require_once("BaseEntity.php");
 
-class Category extends BaseEntity{
+class CartCartitem extends BaseEntity
+{
+    private static $tableName = "cart_cartitem";
 
-    private static $tableName = "categories";
-
-    public $id, $nameEN, $nameDE, $nameFR, $parentId; 
+    public $cartId, $cartItemId, $active;
 
     public function __construct()
     {
@@ -13,25 +13,26 @@ class Category extends BaseEntity{
         echo(__CLASS__);
     }
 
-    public static function create(Category $category)
+    public static function create(CartCartitem $cartCartitem)
     {
         $query =
-            "INSERT INTO ".self::$tableName." (nameEN, nameDE, nameFR, parentId) VALUES (?,?,?,?);";
+            "INSERT INTO " . self::$tableName . "(cartId, cartItemId, active) VALUES (?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
-        $success = $preparedQuery->bind_param('sssi', 
-            $category->nameEN, 
-            $category->nameDE, 
-            $category->nameFR, 
-            $category->parentId);
+        // TODO boolean!
+        $success = $preparedQuery->bind_param(
+            'iib',
+            $cartCartitem->cartId,
+            $cartCartitem->cartItemId,
+            $cartCartitem->active
+        );
 
         if(!$success){
             die(DB::getDbConnection()->error);
             return false;
-        } 
+        }
         $preparedQuery->execute();
-        // return self::$db::doQuery($query);
     }
 
     public function update()
@@ -48,10 +49,9 @@ class Category extends BaseEntity{
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Category"))
+        while ($products = $result->fetch_object("CartCartitem"))
             var_dump($products);
 
         $result->close();
     }
 }
-?>

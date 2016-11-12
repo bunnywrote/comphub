@@ -1,11 +1,11 @@
 <?php
 require_once("BaseEntity.php");
 
-class Category extends BaseEntity{
+class Unit extends BaseEntity
+{
+    private static $tableName = "units";
 
-    private static $tableName = "categories";
-
-    public $id, $nameEN, $nameDE, $nameFR, $parentId; 
+    public $id, $nameEN, $nameDE, $nameFR;
 
     public function __construct()
     {
@@ -13,25 +13,25 @@ class Category extends BaseEntity{
         echo(__CLASS__);
     }
 
-    public static function create(Category $category)
+    public static function create(Unit $unit)
     {
         $query =
-            "INSERT INTO ".self::$tableName." (nameEN, nameDE, nameFR, parentId) VALUES (?,?,?,?);";
+            "INSERT INTO " . self::$tableName . "(nameEN, nameDE, nameFR) VALUES (?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
-        $success = $preparedQuery->bind_param('sssi', 
-            $category->nameEN, 
-            $category->nameDE, 
-            $category->nameFR, 
-            $category->parentId);
+        $success = $preparedQuery->bind_param(
+            'sss',
+            $unit->nameEN,
+            $unit->nameDE,
+            $unit->nameFR
+        );
 
         if(!$success){
             die(DB::getDbConnection()->error);
             return false;
-        } 
+        }
         $preparedQuery->execute();
-        // return self::$db::doQuery($query);
     }
 
     public function update()
@@ -44,14 +44,13 @@ class Category extends BaseEntity{
         return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
     }
 
-    public function getAllProducts()
+    public function getAllUnits()
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Category"))
-            var_dump($products);
+        while ($units = $result->fetch_object("Unit"))
+            var_dump($units);
 
         $result->close();
     }
 }
-?>
