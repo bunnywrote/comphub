@@ -10,90 +10,90 @@
     }
 
     $firstName = $lastName = $street = $email = $city = $state = $zip = '';
-    $firstNameErr = $lastNameErr = $addressErr = $emailErr = $cityErr = $stateErr = $zipErr = '';
-    $success = false;
+    $firstNameErr = $lastNameErr = $streetErr = $emailErr = $cityErr = $stateErr = $zipErr = '';
+//    $success = false;
 
     /* validate first name */
     if (empty($_POST['firstName'])) {
         $firstNameErr = 'First name is required';
-        $success = false;
+//        $success = false;
     } else {
         $firstName = $_POST['firstName'];
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/", $firstName)) {
             $firstNameErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate last name */
     if (empty($_POST['lastName'])) {
         $lastNameErr = 'Last name is required';
-        $success = false;
+//        $success = false;
     } else {
         $lastName = $_POST['lastName'];
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/", $lastName)) {
             $lastNameErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate street */
     if (empty($_POST['street'])) {
         $streetErr = 'Street is required';
-        $success = false;
+//        $success = false;
     } else {
         $street = $_POST['street'];
         if (!preg_match("/^[a-zA-Z ]*$/", $street)) {
             $streetErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate city */
     if (empty($_POST['city'])) {
         $cityErr = 'Please, input a city';
-        $success = false;
+//        $success = false;
     } else {
         $city = $_POST['city'];
         if (!preg_match("/^[a-zA-Z ]*$/", $city)) {
             $cityErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate state */
     if (empty($_POST['state'])) {
         $stateErr = 'Please, input a state';
-        $success = false;
+//        $success = false;
     } else {
         $state = $_POST['state'];
         if (!preg_match("/^[a-zA-Z ]*$/", $state)) {
             $stateErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate zip */
     if (empty($_POST['zip'])) {
         $zipErr = 'Please, input a ZIP';
-        $success = false;
+//        $success = false;
     } else {
         $zip = $_POST['zip'];
         if (!preg_match("/^[a-zA-Z ]*$/", $zip)) {
             $zipErr = "Only letters and white space allowed";
         }
-        $success = true;
+//        $success = true;
     }
 
     /* validate email */
     if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $emailErr = 'Please, input a valid email';
-        $success = false;
+//        $success = false;
     } else {
         $email = $_POST['email'];
-        $success = true;
+//        $success = true;
     }
 
     /* show success alert */
@@ -216,3 +216,6 @@
 
     </body>
 </html>
+<?php
+
+?>

@@ -1,5 +1,5 @@
 <?php
-    require_once(ROOT.'\Core\Models\BaseEntity.php');
+    require_once(ROOT.'\Models\BaseEntity.php');
 
 class Product extends BaseEntity
 {
@@ -10,7 +10,6 @@ class Product extends BaseEntity
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(Product $product)
@@ -43,9 +42,30 @@ class Product extends BaseEntity
         //TODO implement
     }
 
-    public function get($id)
+    public static function getById($id)
     {
-        return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
+    }
+
+    public static function getByCategoryId($id)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE categoryId='.$id);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
     }
 
     public function getAllProducts()
