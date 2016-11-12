@@ -28,6 +28,8 @@
         <nav>
             <ul>
                 <?php
+                    // Helper::varDebug($this->viewBag);
+                   // exit();
                     if(isset($this->viewBag['categories']))
                         foreach($this->viewBag['categories'] as $key => $value){
                             echo '<li><a href="'.$value.'">'.$key.'</a></li>';
