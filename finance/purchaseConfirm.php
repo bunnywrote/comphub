@@ -6,43 +6,15 @@
 //        echo "<p>Success validation</p>";
 //        exit;
 //    }
+session_start();
+$_SESSION["firstName"] = $_POST["firstName"];
+$_SESSION["lastName"] = $_POST["lastName"];
+$_SESSION["street"] = $_POST["street"];
+$_SESSION["city"] = $_POST["city"];
+$_SESSION["state"] = $_POST["state"];
+$_SESSION["zip"] = $_POST["zip"];
 
-    $success = true;
-    $price = $count = '';
-    // define variables
-    $name = $address = $email = $e_name = $e_address = $e_email = '';
-
-    /* validate name */
-    if (empty($_POST['name'])) {
-        $e_name = 'Name is required';
-//        $success = false;
-    } else {
-        $name = $_POST['name'];
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $nameErr = "Only letters and white space allowed";
-        }
-    }
-
-    /* validate address */
-    if (empty($_POST['address'])) {
-        $e_address = 'Please, input an address';
-        $success = false;
-    } else
-        $email = $_POST['address'];
-
-    /* validate email */
-    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $e_email = 'Please, input an email';
-        $success = false;
-    } else
-        $email = $_POST['email'];
-
-    /* show success alert */
-//    if ($success) {
-//        echo "<p>Success validation</p>";
-//        exit;
-//    }
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -56,17 +28,18 @@
     <body>
         <div>
             <p><h2>Purchase Summary</h2></p>
-<!--            <p>Name: --><?//=$name;?><!--</p>-->
-            <p>Name: <?=$_POST['name'];?></p>
-<!--            <p>Address: --><?//=$address;?><!--</p>-->
-<!--            <p>E-Mail: --><?//=$email;?><!--</p>-->
-            <p>Address: <?=$_POST['address'];?></p>
-            <p>E-Mail: <?=$_POST['email'];?></p>
+
+            <p>First Name: <?=$_POST['firstName'];?></p>
+            <p>Last Name: <?=$_POST['lastName'];?></p>
+            <p>Street: <?=$_POST['street'];?></p>
+            <p>City: <?=$_POST['city'];?></p>
+            <p>State: <?=$_POST['state'];?></p>
+            <p>Zip: <?=$_POST['zip'];?></p>
+<!--            <p>E-Mail: --><?//=$_POST['email'];?><!--</p>-->
         </div>
 
         <div>
             <p><h2>Purchased Items</h2></p>
-<!--            <p>Price: --><?//=$_POST['price'];?><!--</p>-->
             <p>Count: <?=$_POST['count'];?></p>
             <p>Total: <?=$_POST['totalPrice'];?></p>
         </div>
@@ -78,8 +51,9 @@
             <p>Gift Box: <?=$_POST['selectGiftBox'];?></p>
         </div>
 
-        <div class="submitButton">
-            <button onclick="alertWindow()">Send</button>
+        <div class="buttons">
+            <input type="button" class="buttons-child" id="backButton" value="Back" onclick="goBack()">
+            <input type="button" class="buttons-child" id="submitButton" value="Submit" onclick="alertWindow()">
         </div>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
