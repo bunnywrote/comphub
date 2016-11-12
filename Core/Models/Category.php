@@ -48,10 +48,11 @@ class Category extends BaseEntity{
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Category"))
-            var_dump($products);
-
-        $result->close();
+        while ($category = $result->fetch_object("Category"))
+        {
+            $categories[] = $category;
+        }
+        return $categories;
     }
 }
 ?>

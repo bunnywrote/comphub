@@ -49,9 +49,12 @@ class Property extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Property"))
-            var_dump($products);
-
-        $result->close();
+        while ($product = $result->fetch_object("Property"))
+        {
+            $products[] = $product;
+        }
+        return $products;
     }
+
 }
+?>

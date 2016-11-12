@@ -47,9 +47,12 @@ class Brand extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($brands = $result->fetch_object("Brand"))
-            var_dump($brands);
-
-        $result->close();
+        while ($brand = $result->fetch_object("Brand"))
+        {
+            $brands[] = $brand;
+        }
+        return $brands;
     }
+
 }
+?>

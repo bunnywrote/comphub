@@ -1,5 +1,5 @@
 <?php
-require_once("BaseEntity.php");
+    require_once(ROOT.'\Core\Models\BaseEntity.php');
 
 class Product extends BaseEntity
 {
@@ -51,9 +51,12 @@ class Product extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("Product"))
-            var_dump($products);
-
-        $result->close();
+        while ($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
     }
+
 }
+?>

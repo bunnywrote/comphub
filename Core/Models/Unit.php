@@ -48,9 +48,10 @@ class Unit extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($units = $result->fetch_object("Unit"))
-            var_dump($units);
-
-        $result->close();
+        while ($unit = $result->fetch_object("Unit"))
+        {
+            $units[] = $unit;
+        }
+        return $units;
     }
 }

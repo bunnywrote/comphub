@@ -1,5 +1,5 @@
 <?php
-require_once("db.php");
+require_once(ROOT.'\Core\db.php');
 
 abstract class BaseEntity{
     protected static $db;

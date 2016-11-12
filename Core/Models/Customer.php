@@ -50,9 +50,12 @@ class Customer extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($customers = $result->fetch_object("Customer"))
-            var_dump($customers);
-
-        $result->close();
+        while ($customer = $result->fetch_object("Customer"))
+        {
+            $customers[] = $customer;
+        }
+        return $customers;
     }
+
 }
+?>

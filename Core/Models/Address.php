@@ -49,9 +49,12 @@ class Address extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($addresses = $result->fetch_object("Address"))
-            var_dump($addresses);
-
-        $result->close();
+        while ($address = $result->fetch_object("Address"))
+        {
+            $addresses[] = $address;
+        }
+        return $addresses;
     }
+
 }
+?>

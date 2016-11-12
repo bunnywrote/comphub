@@ -48,9 +48,12 @@ class Payment extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($payments = $result->fetch_object("Payment"))
-            var_dump($payments);
-
-        $result->close();
+        while ($payment = $result->fetch_object("Payment"))
+        {
+            $payments[] = $payment;
+        }
+        return $payments;
     }
+
 }
+?>

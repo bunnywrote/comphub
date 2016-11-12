@@ -48,8 +48,11 @@ class CustomerAddress extends BaseEntity
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
         while ($address = $result->fetch_object("CustomerAddress"))
-            var_dump($address);
-
-        $result->close();
+        {
+            $addresses[] = $address;
+        }
+        return $addresses;
     }
+
 }
+?>

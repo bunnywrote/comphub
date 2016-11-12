@@ -46,9 +46,12 @@ class CartItem extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($products = $result->fetch_object("CartItem"))
-            var_dump($products);
-
-        $result->close();
+        while ($product = $result->fetch_object("CartItem"))
+        {
+            $products[] = $product;
+        }
+        return $products;
     }
+
 }
+?>
