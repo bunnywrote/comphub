@@ -43,10 +43,6 @@ class DB {
     }
 
     public static function doQuery($sql){
-<<<<<<< HEAD
-=======
-//        var_dump($sql);
->>>>>>> 833a5a85dc7ab90cca6ec9a08ba867c0de0e531a
         return self::getInstance()->getDbConnection()->query($sql);
     }
 
