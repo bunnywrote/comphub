@@ -10,7 +10,6 @@ class Cart extends BaseEntity
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(Cart $cart)
