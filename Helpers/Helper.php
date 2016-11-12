@@ -7,5 +7,10 @@ class Helper{
         var_dump($value);
         echo("</pre>");
     }
+
+    public static function getProductUrl(int $id)
+    {
+        return "?type=product&id=".$id;
+    }
 }
 ?>

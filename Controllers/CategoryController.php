@@ -1,11 +1,16 @@
 <?php
-class CategoryController extends Controller{
+require_once (ROOT."/Models/Product.php");
+
+class CategoryController extends Controller
+{
     protected $template;
 
     public function actionIndex(int $id)
     {
         $this->template = "index";
+
         $this->viewBag['categories'] = $this->mapCategoriesToUrls(Category::getAllByParentId($id));
+        $this->viewBag['products'] = Product::getByCategoryId($id);
 
         $this->getView("Category", $this->template);
     }

@@ -5,6 +5,8 @@ define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]));
 require_once("Controllers/Controller.php");
 require_once("Controllers/HomeController.php");
 require_once("Controllers/CategoryController.php");
+require_once("Controllers/ProductController.php");
+
 require_once("Helpers/Helper.php");
 
 $controller;
