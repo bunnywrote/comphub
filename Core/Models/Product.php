@@ -5,7 +5,7 @@ class Product extends BaseEntity
 {
     private static $tableName = "products";
 
-    public $id, $name, $descrEN, $descrDE, $descrFR, $price, $brandId;
+    public $id, $name, $descrEN, $descrDE, $descrFR, $price, $brandId, $categoryId;
 
     public function __construct()
     {
@@ -16,18 +16,19 @@ class Product extends BaseEntity
     public static function create(Product $product)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(name, descrEN, descrDE, descrFR, price, brandId) VALUES (?,?,?,?,?,?)";
+            "INSERT INTO " . self::$tableName . "(name, descrEN, descrDE, descrFR, price, brandId, categoryId) VALUES (?,?,?,?,?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'ssssii',
+            'ssssiii',
             $product->name,
             $product->descrEN,
             $product->descrDE,
             $product->descrFR,
             $product->price,
-            $product->brandId
+            $product->brandId,
+            $product->categoryId
         );
 
         if(!$success){

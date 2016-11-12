@@ -5,7 +5,7 @@ class Brand extends BaseEntity
 {
     private static $tableName = "brands";
 
-    public $id, $name, $categoryId;
+    public $id, $name;
 
     public function __construct()
     {
@@ -16,14 +16,13 @@ class Brand extends BaseEntity
     public static function create(Brand $brand)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(name, categoryId) VALUES (?,?)";
+            "INSERT INTO " . self::$tableName . "(name) VALUES (?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'si',
-            $brand->name,
-            $brand->categoryId
+            's',
+            $brand->name
         );
 
         if(!$success){
