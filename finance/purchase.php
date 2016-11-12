@@ -1,6 +1,4 @@
 <?php
-//    include('purchaseConfirm.php');
-//    var_dump($_GET);
 
     if(empty($_GET['price']) || empty($_GET['count'])){
         // go to previous page if GET is empty
@@ -90,19 +88,19 @@
     }
 
     /* validate email */
-//    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-//        $emailErr = 'Please, input a valid email';
-//        $success = false;
-//    } else {
-//        $email = $_POST['email'];
-//        $success = true;
-//    }
+    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $emailErr = 'Please, input a valid email';
+        $success = false;
+    } else {
+        $email = $_POST['email'];
+        $success = true;
+    }
 
     /* show success alert */
-//    if (!$success) {
-//        echo "<p>Success validation</p>";
-//        exit;
-//    }
+    if (!$success) {
+        echo "<p>Success validation</p>";
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -114,8 +112,6 @@
         <link rel="stylesheet" href="..\assets\stylesheets\purchase.css">
     </head>
     <body>
-<!--        <form action=--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
-<!--            method="post">-->
         <form action=<?= ('purchaseConfirm.php');?>
             method="post">
             <div>
@@ -205,10 +201,10 @@
                     <input name="zip" value="<?= $zip;?>"/>
                     <mark><?= $zipErr;?></mark>
                 </p>
-<!--                <p class="dataEntry"><label>E-Mail: </label>-->
-<!--                    <input name="email" value="--><?php //echo $email;?><!--"/>-->
-<!--                    <mark>--><?php //echo $emailErr;?><!--</mark>-->
-<!--                </p>-->
+                <p class="dataEntry"><label>E-Mail: </label>
+                    <input name="email" value="<?php echo $email;?>"/>
+                    <mark><?php echo $emailErr;?></mark>
+                </p>
             </div>
 
             <!-- Submit Button -->

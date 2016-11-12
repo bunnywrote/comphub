@@ -1,20 +1,21 @@
 <?php
-//    var_dump($_POST);
 
-    /* show success alert */
-//    if (!$success) {
-//        echo "<p>Success validation</p>";
-//        exit;
-//    }
-session_start();
-$_SESSION["firstName"] = $_POST["firstName"];
-$_SESSION["lastName"] = $_POST["lastName"];
-$_SESSION["street"] = $_POST["street"];
-$_SESSION["city"] = $_POST["city"];
-$_SESSION["state"] = $_POST["state"];
-$_SESSION["zip"] = $_POST["zip"];
+    session_start();
+    $_SESSION["firstName"] = $_POST["firstName"];
+    $_SESSION["lastName"] = $_POST["lastName"];
+    $_SESSION["street"] = $_POST["street"];
+    $_SESSION["city"] = $_POST["city"];
+    $_SESSION["state"] = $_POST["state"];
+    $_SESSION["zip"] = $_POST["zip"];
+    $_SESSION["email"] = $_POST["email"];
 
-var_dump($_SESSION);
+    $_SESSION["count"] = $_POST["count"];
+    $_SESSION["totalPrice"] = $_POST["totalPrice"];
+
+    $_SESSION["payment"] = $_POST["payment"];
+    $_SESSION["shipping"] = $_POST["shipping"];
+    $_SESSION["selectGiftBox"] = $_POST["selectGiftBox"];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ var_dump($_SESSION);
             <p>City: <?=$_POST['city'];?></p>
             <p>State: <?=$_POST['state'];?></p>
             <p>Zip: <?=$_POST['zip'];?></p>
-<!--            <p>E-Mail: --><?//=$_POST['email'];?><!--</p>-->
+            <p>E-Mail: <?=$_POST['email'];?></p>
         </div>
 
         <div>
@@ -52,12 +53,12 @@ var_dump($_SESSION);
         </div>
 
         <div class="buttons">
-            <input type="button" class="buttons-child" id="backButton" value="Back" onclick="goBack()">
-            <input type="button" class="buttons-child" id="submitButton" value="Submit" onclick="alertWindow()">
+            <input type="button" class="buttons-child" id="backButton" value="Back" onclick="history.go(-1)">
+            <input type="button" class="buttons-child" id="submitButton2" value="Submit">
         </div>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-        <script src="..\assets\scripts\alertWindow.js" async></script>
+        <script src="..\assets\scripts\purchaseConfirm.js" async></script>
     </body>
 </html>
 
