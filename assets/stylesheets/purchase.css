@@ -54,9 +54,9 @@ h3 {
     /*margin: 60px 10px 10px;*/
 /*}*/
 
-/*.submitButton {*/
-    /*margin: 60px 10px 10px;*/
-/*}*/
+.submitButton {
+    margin: 60px -5px 10px;
+}
 
 .buttons {
     display: -webkit-box;
@@ -75,7 +75,7 @@ h3 {
     flex:  1 1 auto;
 }
 
-#backButton, #submitButton{
+#backButton, #submitButton2 {
     display: inline-block;
     margin-right: 5px;
 }
