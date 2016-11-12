@@ -1,11 +1,11 @@
 <?php
-    require_once('db.php');
-    require_once('Models/product.php');
+    require_once("Models/Category.php");
 
-    $objectDB = DB::getDbConnection();
+    $category = new Category();
+    $category->nameEN = "PC";
+    $category->nameDE = "Einzelplatzrechner";
+    $category->nameFR = "Ordinateur";
+    $category->parentId = 0;
 
-    $prod = new Product(DB::getInstance());
-    $allProducts = $prod->getAllProducts();
-
-    var_dump($allProducts);
+    Category::create($category);
 ?>
