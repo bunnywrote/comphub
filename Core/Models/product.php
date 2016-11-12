@@ -1,11 +1,11 @@
 <?php
-<<<<<<< HEAD
 require_once("BaseEntity.php");
 
-class Product extends BaseEntity{
-    protected $tableName = "products";
+class Product extends BaseEntity
+{
+    private static $tableName = "products";
 
-    public $id, $nameEN, $nameDE, $nameFR, $parentId; 
+    public $id, $name, $descrEN, $descrDE, $descrFR, $price, $brandId;
 
     public function __construct()
     {
@@ -13,38 +13,28 @@ class Product extends BaseEntity{
         echo(__CLASS__);
     }
 
-    public static function create(Product $product){
-
-        $query = "INSERT INTO ".$this->tableName." (nameEN, nameDE, nameFR, parentId) VALUE (?,?,?,?)";
-
-        $this->db->prepare($query);
-        $this->db->bind_param('sssi', $product->nameEN, $product->nameDE, $product->nameFR, $product->parentId);
-
-        if(!$success) return false;
-        return $this->db::doQuery($query);
-=======
-
-require_once ("db.php");
-
-class Product {
-
-    protected $dbname = "products";
-    private $name, $price, $descr_en, $descr_de, $descr_fr, $brand_id;
-
-    public function __construct()
-    {}
-
-    public function update()
+    public static function create(Product $product)
     {
-        // prepare statement with placeholders
-        $statement = DB::getInstance()->doQuery("INSERT INTO products (name, price) VALUES ($this->name, $this->price, $this->descr_en, $this->descr_de, $this->descr_fr, $this->brand_id)");
+        $query =
+            "INSERT INTO " . self::$tableName . "(name, descrEN, descrDE, descrFR, price, brandId) VALUES (?,?,?,?,?,?)";
 
-        // bind placeholders to parameters: i/ntegers, d/ouble, s/tring, b/lob
-        $statement->bind_param('sisssi', name,  price, descr_en, descr_de, descr_fr, brand_id);
+        $preparedQuery = DB::getDbConnection()->prepare($query);
 
-        // execute statement
-        $statement->execute();
->>>>>>> eff0c24bf4695d6677d374f4bc73e34192dd1e8f
+        $success = $preparedQuery->bind_param(
+            'ssssii',
+            $product->name,
+            $product->descrEN,
+            $product->descrDE,
+            $product->descrFR,
+            $product->price,
+            $product->brandId
+        );
+
+        if(!$success){
+            die(DB::getDbConnection()->error);
+            return false;
+        }
+        $preparedQuery->execute();
     }
 
     public function update()
@@ -52,40 +42,18 @@ class Product {
         //TODO implement
     }
 
-<<<<<<< HEAD
-    public function get(){
-        //TODO implement
-=======
-    public function getProduct()
+    public function get($id)
     {
-        // send a query and get mysqli_result object
-        $result = DB::getInstance()->doQuery("SELECT * FROM".$this->dbname);
-
-        // get the first result row as associative array
-        $row = $result->fetch_assoc();
-        // show the row
-        echo $row["name"];
-        echo $row["price"];
-
-        // close result
-        $result->close();
->>>>>>> eff0c24bf4695d6677d374f4bc73e34192dd1e8f
+        return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
     }
 
     public function getAllProducts()
     {
-<<<<<<< HEAD
-        // var_dump($this->db);
-        return $this->db::doQuery('SELECT * FROM '.$this->tableName);
-=======
-        $result = DB::getInstance()->doQuery("SELECT * FROM ".$this->dbname);
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
+
         while ($products = $result->fetch_object("Product"))
             var_dump($products);
 
-        // close result
         $result->close();
->>>>>>> eff0c24bf4695d6677d374f4bc73e34192dd1e8f
     }
-
 }
-?>
