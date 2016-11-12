@@ -44,7 +44,7 @@ class DB {
 
     public static function doQuery($sql){
 //        var_dump($sql);
-        return self::getInstance()->dbConnection->query($sql);
+        return self::getInstance()->getDbConnection()->query($sql);
     }
 
     private function __construct(){
