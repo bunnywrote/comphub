@@ -1,9 +1,7 @@
+<?php require_once(ROOT."/Views/Shared/header.php"); ?>
 <main>
     <section>
-        <?php products();?>
-    </section>
-    <aside>
-        <div id="loginForm" class="user-login">
+        <div class="user-login">
             <form action="login.php" method="post">
                 <div class="login-input">      
                     <input name="name" type="text" placeholder="Name" required>
@@ -18,5 +16,9 @@
                 <input class="btn" type="submit" name="Send">
             </form>
         </div>
+    </section>
+    <aside>
+        aside content
     </aside>
 </main>
+<?php require_once(ROOT."/Views/Shared/footer.php") ?>

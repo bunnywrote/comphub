@@ -15,6 +15,10 @@ if(!isset($_SESSION['lang']))
 //Routing
 if(count($_GET) > 0){
     switch ($_GET['type']){
+        case "login":
+            $controller = new AuthController();
+            $controller->actionIndex();
+            exit();
         case "category":
             $controller = new CategoryController();
             $controller->actionIndex($_GET['id']);

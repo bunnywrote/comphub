@@ -21,6 +21,16 @@
             <a class="logo" href="/">
                 <img src="/assets/images/logo2.svg">
             </a>
+            <div id="login">
+                <?php if(!isset($_SESSION['logged'])):?>
+                    <a href="login.php" 
+                    <!--onclick="alert('login');event.preventDefault();-->
+                    ">Login</a>
+                    <a href="login.php">Registration</a>
+                <?php else: ?>
+                    <span>user name</span>
+                <?php endif; ?>
+            </div>
             <ul class="langs f32">
                 <?php getLanguages($_SESSION['lang'])?>
             </ul>

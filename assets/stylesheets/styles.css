@@ -32,9 +32,16 @@ header .logo img{
     height: 5em;
 }
 
+#login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 header .langs{
     list-style: none;
 }
+
 
 .langs span{
     color: black;
@@ -71,6 +78,7 @@ main{
 
 section{
     background: slategray;
+    height: 500px;
     flex: 2;    
     flex-direction: column;
 }
