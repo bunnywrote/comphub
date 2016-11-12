@@ -21,7 +21,8 @@ class DB {
         $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
         
         if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: ".mysqli_connect_error();
+//            echo "Failed to connect to MySQL: ".mysqli_connect_error();
+            die("Failed to connect to MySQL: " . mysqli_connect_error());
             exit();
         }
 
