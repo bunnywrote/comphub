@@ -9,19 +9,20 @@ class DB {
     private static $instance;
     private $dbConnection;
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         if(!self::$instance)
             self::$instance = new DB();
 
         return self::$instance;
     }
 
-    private static function initConnection(){
+    private static function initConnection()
+    {
         $db = self::getInstance();
         $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
         
         if(mysqli_connect_errno()){
-//            echo "Failed to connect to MySQL: ".mysqli_connect_error();
             die("Failed to connect to MySQL: " . mysqli_connect_error());
             exit();
         }
@@ -30,18 +31,19 @@ class DB {
         return $db;
     }
 
-    public static function getDbConnection(){
+    public static function getDbConnection()
+    {
         try{
             $db = self::initConnection();
             return $db->dbConnection;
         }catch(Exception $ex){
-            echo "I was unable to open a connection to the database. " . $ex->getMessage();
+            die("I was unable to open a connection to the database. " . $ex->getMessage());
             return null;
         }
     }
 
     public static function doQuery($sql){
-        var_dump($sql);
+//        var_dump($sql);
         return self::getInstance()->dbConnection->query($sql);
     }
 
