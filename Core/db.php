@@ -21,7 +21,6 @@ class DB {
         $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
         
         if(mysqli_connect_errno()){
-//            echo "Failed to connect to MySQL: ".mysqli_connect_error();
             die("Failed to connect to MySQL: " . mysqli_connect_error());
             exit();
         }
@@ -41,8 +40,7 @@ class DB {
     }
 
     public static function doQuery($sql){
-        var_dump($sql);
-        return self::getInstance()->dbConnection->query($sql);
+        return self::getInstance()->getDbConnection()->query($sql);
     }
 
     private function __construct(){

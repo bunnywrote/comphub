@@ -1,28 +1,36 @@
 <?php
-    include('header.php');
-?>
-<main>
-    <section>
-        <?php products();?>
-    </section>
-    <aside>
-        <div class="user-login">
-            <form action="login.php" method="post">
-                <div class="login-input">      
-                    <input name="name" type="text" placeholder="Name" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                </div>
-                <div class="login-input">      
-                    <input name="password" type="password" placeholder="Password" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                </div>
-                <input class="btn" type="submit" name="Send">
-            </form>
-        </div>
-    </aside>
-</main>
-<?php 
-    include('footer.php')
+session_start();
+define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]));
+
+require_once("Controllers/Controller.php");
+require_once("Controllers/HomeController.php");
+require_once("Controllers/CategoryController.php");
+require_once("Helpers/Helper.php");
+
+$controller;
+
+if(!isset($_SESSION['lang']))
+    $_SESSION['lang'] = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+//Routing
+if(count($_GET) > 0){
+    switch ($_GET['type']){
+        case "category":
+            $controller = new CategoryController();
+            $controller->actionIndex($_GET['id']);
+            exit();
+        case "product":
+            $controller = new ProductController();
+            $controller->actionIndex($_GET['id']);
+            exit();
+        default:
+            $controller = new HomeController();
+            $controller->actionError();
+            exit();
+    }
+}
+
+//by default to home
+$controller = new HomeController();
+$controller->actionIndex();
 ?>

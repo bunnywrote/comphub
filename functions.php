@@ -15,23 +15,23 @@
         return urldecode($_GET[$name]);
     }
 
-    function navigation($language, $pageId){
+    // function navigation($language, $pageId){
         
-        $localizer = getLocalizer($language);
+    //     $localizer = getLocalizer($language);
 
-        $navLinks = array(
-            "PC" => "/pc",
-            "Server" => "/server",
-            "Peripherie" => "/peripherie",
-            "Components" => "/components",
-            "Software" => "/software",
-        );
+    //     $navLinks = array(
+    //         "PC" => "/pc",
+    //         "Server" => "/server",
+    //         "Peripherie" => "/peripherie",
+    //         "Components" => "/components",
+    //         "Software" => "/software",
+    //     );
 
-        //todo language und pageId beruecksichtigen
-        foreach ($navLinks as $key => $value) {
-            echo '<li><a href="'.$value.'">'.$localizer[$key].'</a></li>';
-        }
-    }
+    //     //todo language und pageId beruecksichtigen
+    //     foreach ($navLinks as $key => $value) {
+    //         echo '<li><a href="'.$value.'">'.$localizer[$key].'</a></li>';
+    //     }
+    // }
 
     function getLanguages($language){
         $supportedLanguages = array(

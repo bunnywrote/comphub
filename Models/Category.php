@@ -6,17 +6,12 @@ class Category extends BaseEntity{
 
     public $id, $nameEN, $nameDE, $nameFR, $parentId; 
 
-
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(Category $category){
-        //TODO implement
-
-        var_dump($category);
 
         $query = 
         "INSERT INTO ".self::$tableName." (nameEN, nameDE, nameFR, parentId) VALUES (?,?,?,?);";
@@ -38,7 +33,6 @@ class Category extends BaseEntity{
             return false;
         } 
         $preparedQuery->execute();
-        // return self::$db::doQuery($query);
     }
 
     public function update()
@@ -50,10 +44,26 @@ class Category extends BaseEntity{
         //TODO implement
     }
 
-    public function getAllProducts()
+    public static function getAllByParentId($id = 0)
     {
-        // var_dump($this->db);
-        return $this->db::doQuery('SELECT * FROM '.$this->tableName);
+        //todo sanity
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE parentId='.$id);
+
+        $categories = array();
+
+        while($category = $result->fetch_object("Category")){
+            $categories[] = $category;
+        }
+        return $categories;
+    }
+
+    public static function getAll()
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName); 
+        while($category = $result->fetch_object("Category")){
+            $categories[] = $category;
+        }
+        return $categories;
     }
 }
 ?>

@@ -1,12 +1,10 @@
 <?php
-    include('functions.php');
-    $language = get_param('lang', 'en');
-    $pageId = get_param('id', 0);
+    include(ROOT.'/functions.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?=$_SESSION['lang']?>">
     <head>
-        <title>Web Shop</title>
+        <title>CompHub</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="assets/stylesheets/flags32.css">
@@ -20,17 +18,20 @@
     </head>
     <body>
         <header>
-            <img class="logo" src="/assets/images/logo2.svg">
+            <a class="logo" href="/">
+                <img src="/assets/images/logo2.svg">
+            </a>
             <ul class="langs f32">
-                <?php getLanguages($language)?>
+                <?php getLanguages($_SESSION['lang'])?>
             </ul>
         </header>
         <nav>
             <ul>
-                <li>
-                    <ul>
-                        <?php navigation($language, null)?>
-                    </ul>
-                </li>
+                <?php
+                    if(isset($this->viewBag['categories']))
+                        foreach($this->viewBag['categories'] as $key => $value){
+                            echo '<li><a href="'.$value.'">'.$key.'</a></li>';
+                        }
+                ?>
             </ul>
         </nav>

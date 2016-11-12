@@ -23,12 +23,17 @@ header{
     justify-content: space-between;
 }
 
-header .langs{
-    list-style: none;
+header .logo{
+    display: flex;
+    align-items: center;
 }
 
-.logo{
+header .logo img{
     height: 5em;
+}
+
+header .langs{
+    list-style: none;
 }
 
 .langs span{
