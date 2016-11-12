@@ -1,11 +1,11 @@
 <?php
-    require_once(ROOT.'\Core\Models\BaseEntity.php');
+require_once("BaseEntity.php");
 
-class Product extends BaseEntity
+class Cart extends BaseEntity
 {
-    private static $tableName = "products";
+    private static $tableName = "carts";
 
-    public $id, $name, $descrEN, $descrDE, $descrFR, $price, $brandId, $categoryId;
+    public $id, $totalCost;
 
     public function __construct()
     {
@@ -13,22 +13,16 @@ class Product extends BaseEntity
         echo(__CLASS__);
     }
 
-    public static function create(Product $product)
+    public static function create(Cart $cart)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(name, descrEN, descrDE, descrFR, price, brandId, categoryId) VALUES (?,?,?,?,?,?,?)";
+            "INSERT INTO " . self::$tableName . "(totalCost) VALUES (?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'ssssiii',
-            $product->name,
-            $product->descrEN,
-            $product->descrDE,
-            $product->descrFR,
-            $product->price,
-            $product->brandId,
-            $product->categoryId
+            'i',
+            $cart->totalCost
         );
 
         if(!$success){
@@ -52,7 +46,7 @@ class Product extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($product = $result->fetch_object("Product"))
+        while ($product = $result->fetch_object("Cart"))
         {
             $products[] = $product;
         }
@@ -60,4 +54,3 @@ class Product extends BaseEntity
     }
 
 }
-?>

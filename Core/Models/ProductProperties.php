@@ -1,11 +1,11 @@
 <?php
-    require_once(ROOT.'\Core\Models\BaseEntity.php');
+require_once("BaseEntity.php");
 
-class Product extends BaseEntity
+class ProductProperties extends BaseEntity
 {
-    private static $tableName = "products";
+    private static $tableName = "product_properties";
 
-    public $id, $name, $descrEN, $descrDE, $descrFR, $price, $brandId, $categoryId;
+    public $prodId, $propId;
 
     public function __construct()
     {
@@ -13,22 +13,17 @@ class Product extends BaseEntity
         echo(__CLASS__);
     }
 
-    public static function create(Product $product)
+    public static function create(ProductProperties $productProperties)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(name, descrEN, descrDE, descrFR, price, brandId, categoryId) VALUES (?,?,?,?,?,?,?)";
+            "INSERT INTO " . self::$tableName . "(prodId, propId) VALUES (?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'ssssiii',
-            $product->name,
-            $product->descrEN,
-            $product->descrDE,
-            $product->descrFR,
-            $product->price,
-            $product->brandId,
-            $product->categoryId
+            'ii',
+            $productProperties->prodId,
+            $productProperties->propId
         );
 
         if(!$success){
@@ -52,7 +47,7 @@ class Product extends BaseEntity
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($product = $result->fetch_object("Product"))
+        while ($product = $result->fetch_object("ProductProperties"))
         {
             $products[] = $product;
         }

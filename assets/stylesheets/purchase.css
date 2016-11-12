@@ -2,6 +2,14 @@ h2 {
     margin: 10px;
 }
 
+p {
+    margin: 10px;
+}
+
+#shippingMethod {
+    margin-top: 30px;
+}
+
 #paymentMethod {
    margin-top: 30px;
 }
@@ -27,22 +35,48 @@ h3 {
 }
 
 .giftBox {
-margin: 10px;
+    margin: 10px;
 }
 
 #giftBox {
-margin-top: 30px;
+    margin-top: 30px;
 }
 
 #dataEntry {
-margin-top: 30px;
+    margin-top: 30px;
 }
 
 .dataEntry {
-margin: 10px;
+    margin: 10px;
 }
 
+/*.backButton {*/
+    /*margin: 60px 10px 10px;*/
+/*}*/
+
 .submitButton {
-margin: 60px 10px 10px;
+    margin: 60px -5px 10px;
+}
+
+.buttons {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin: 60px 10px 10px;
+}
+
+.buttons-child {
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex:  1 1 auto;
+    -webkit-flex:  1 1 auto;
+    -ms-flex:  1 1 auto;
+    flex:  1 1 auto;
+}
+
+#backButton, #submitButton2 {
+    display: inline-block;
+    margin-right: 5px;
 }
 
