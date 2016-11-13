@@ -26,8 +26,7 @@ class DB {
             die("Failed to connect to MySQL: " . mysqli_connect_error());
             exit();
         }
-
-        $db->dbConnection->set_charset('utf-8');
+        $db->dbConnection->set_charset('utf8');
         return $db;
     }
 
