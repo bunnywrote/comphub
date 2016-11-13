@@ -49,7 +49,7 @@
                 echo '<li><span class="flag '.$key.'"></span><span>'.$value.'</span></li>';
             }
             else            
-                echo '<li><span class="flag '.$key.'"></span><a href="/?lang='.$key.'">'.$value.'</a></li>';
+                echo '<li><span class="flag '.$key.'"></span><a href="/?type=lang&value='.$value.'"></a></li>';
         }
     }
 

@@ -5,31 +5,43 @@ class CartItem extends BaseEntity
 {
     private static $tableName = "cart_items";
 
-    public $id, $quantity;
+    public $id, $cartId, $productId, $quantity;
 
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(CartItem $cartItem)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(quantity) VALUES (?)";
+            "INSERT INTO " . self::$tableName . " (productId, cartId, quantity) VALUES (?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
-        $success = $preparedQuery->bind_param(
-            'i',
-            $cartItem->quantity
-        );
+        Helper::varDebug($preparedQuery);
 
-        if(!$success){
-            die(DB::getDbConnection()->error);
-            return false;
+        if($preparedQuery){
+            $cartId =    (int)$cartItem->cartId;
+            $productId = (int)$cartItem->productId;
+            $quantity = (int)$cartItem->quantity;
+
+            $success = $preparedQuery->bind_param(
+                'iii',
+                $productId,
+                $cartId,                
+                $quantity           
+            );
+
+            if(!$success){
+                die("ERROR: ".DB::getDbConnection()->error);
+                return false;
+            }
+
+            $preparedQuery->execute();
+        }else{
+            die(__CLASS__."; $preparedQuery = ".$preparedQuery);
         }
-        $preparedQuery->execute();
     }
 
     public function update()

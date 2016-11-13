@@ -32,7 +32,17 @@
                 <?php endif; ?>
             </div>
             <ul class="langs f32">
-                <?php getLanguages($_SESSION['lang'])?>
+                <?php foreach(CultureHelper::$supportedLangs as $key => $value):?>
+                    <?php if($key === $_SESSION['lang']):?>
+                        <li>
+                            <span class="flag <?=$key?>"></span><span><?=$value?></span>
+                        </li>
+                    <?php else:?>
+                        <li>
+                            <span class="flag <?=$key?>"></span><a href="/?type=lang&value=<?=$key?>"><?=$value?></a></li>
+                        </li>
+                    <?php endif;?>
+                <?php endforeach; ?>
             </ul>
         </header>
         <nav>

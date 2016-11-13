@@ -6,13 +6,24 @@ require_once("Controllers/Controller.php");
 require_once("Controllers/HomeController.php");
 require_once("Controllers/CategoryController.php");
 require_once("Controllers/ProductController.php");
+require_once("Controllers/CartController.php");
 
 require_once("Helpers/Helper.php");
+require_once("Helpers/CultureHelper.php");
 
 $controller;
 
-if(!isset($_SESSION['lang']))
+// Helper::varDebug($_SESSION);
+// Helper::varDebug($_GET);
+// Helper::varDebug($_COOKIE);
+
+if(isset($_COOKIE['lang'])){
+    $_SESSION['lang'] = $_COOKIE['lang'];
+}
+
+if(!isset($_SESSION['lang'])){
     $_SESSION['lang'] = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+}
 
 //Routing
 if(count($_GET) > 0){
@@ -28,6 +39,38 @@ if(count($_GET) > 0){
         case "product":
             $controller = new ProductController();
             $controller->actionIndex($_GET['id']);
+            exit();
+        case "cart":
+            if(isset($_POST['id']) && isset($_POST['count'])){
+                $productId = (int)$_POST['id'];
+                $quantity = (int)$_POST['count'];
+
+                $controller = new CartController();
+                $cart = $controller->addToCart($productId, $quantity);
+
+                header("Location: ".$_SERVER["HTTP_REFERER"]);
+                die();
+            }else{
+                die("$_POST is empty");
+            }
+            exit();
+        case "lang":
+            if(isset($_GET['value'])){
+                if(CultureHelper::isSupportedLang($_GET['value'])){
+                    $lang = $_GET['value'];
+                }else{
+                    $lang = CultureHelper::$defaultLang;
+                }
+
+                setcookie('lang', $lang);
+                $_SESSION['lang'] = $lang;
+
+                header("Location: ".$_SERVER["HTTP_REFERER"]);
+                die();
+            }
+            else{
+                die("incorrect lang");
+            }
             exit();
         default:
             $controller = new HomeController();

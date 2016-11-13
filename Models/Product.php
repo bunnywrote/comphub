@@ -44,15 +44,13 @@ class Product extends BaseEntity
 
     public static function getById($id)
     {
-        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id. 'LIMIT 1');
 
-        $products = array();
-
-        while($product = $result->fetch_object("Product"))
-        {
-            $products[] = $product;
+        if($result != null){
+            return $result->fetch_object("Product");
         }
-        return $products;
+
+        return null;
     }
 
     public static function getByCategoryId($id)

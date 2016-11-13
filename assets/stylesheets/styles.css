@@ -78,7 +78,7 @@ main{
 
 section{
     background: slategray;
-    height: 500px;
+    min-height: 500px;
     flex: 2;    
     flex-direction: column;
 }
@@ -117,13 +117,15 @@ article:last-child{
     border: none;
     border-radius: 2px;
     font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
     cursor: pointer;
     transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.2s;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
-.article-buy input[type='submit']{
+.article-buy a, input[type='submit']{
     background-color: #0f9d58;
     color: #fff;
 }
