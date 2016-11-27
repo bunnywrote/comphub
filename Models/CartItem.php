@@ -54,15 +54,18 @@ class CartItem extends BaseEntity
         return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
     }
 
-    public function getAllProducts()
+    public static function getItems(int $cartId)
     {
-        $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' ci'.
+                                ' JOIN products p ON p.id = ci.productId'.
+                                ' WHERE cartId='.$cartId);
 
-        while ($product = $result->fetch_object("CartItem"))
-        {
-            $products[] = $product;
-        }
-        return $products;
+        $cartItems = array();
+
+        while ($cartItem = $result->fetch_object(__CLASS__))
+            $cartItems[] = $cartItem;
+
+        return $cartItems;
     }
 
 }

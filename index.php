@@ -4,6 +4,7 @@ define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]));
 
 require_once("Controllers/Controller.php");
 require_once("Controllers/HomeController.php");
+require_once("Controllers/AuthController.php");
 require_once("Controllers/CategoryController.php");
 require_once("Controllers/ProductController.php");
 require_once("Controllers/CartController.php");
@@ -13,9 +14,16 @@ require_once("Helpers/CultureHelper.php");
 
 $controller;
 
-// Helper::varDebug($_SESSION);
 // Helper::varDebug($_GET);
 // Helper::varDebug($_COOKIE);
+
+if(!isset($_COOKIE['sessid']) && !isset($_SESSION['sessid'])){
+    $sessId = Helper::generateSessId();
+    setcookie("sessid", $sessId);
+    $_SESSION["sessid"] = $sessId;
+}
+
+Helper::varDebug($_SESSION);
 
 if(isset($_COOKIE['lang'])){
     $_SESSION['lang'] = $_COOKIE['lang'];
@@ -29,8 +37,10 @@ if(!isset($_SESSION['lang'])){
 if(count($_GET) > 0){
     switch ($_GET['type']){
         case "login":
-            $controller = new AuthController();
-            $controller->actionIndex();
+            if(!isset($_SESSION['logged_in'])){
+                $controller = new AuthController();
+                $controller->actionLogin();
+            }
             exit();
         case "category":
             $controller = new CategoryController();

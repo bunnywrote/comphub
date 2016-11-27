@@ -4,7 +4,7 @@ class AuthController extends Controller{
 
     public function actionIndex()
     {
-        if(!isset($_SESSION['logged']))
+        if(!isset($_SESSION['logged_in']))
             $this->actionLogin();
     }
 

@@ -40,6 +40,12 @@ class Cart extends BaseEntity
         return $lastId;
     }
 
+    public static function add(CartItem $cartItem)
+    {
+        #TODO check if cartItem with the productId has been added
+        CartItem::create($cartItem); 
+    }
+
     public function update(int $cartId, int $productId, int $quantity)
     {
         $product = Product::getById($productId); 
@@ -53,27 +59,33 @@ class Cart extends BaseEntity
     {
         Helper::varDebug($id);
 
-        $result = DB::doQuery('SELECT * FROM ' .self::$tableName. ' c'.
-                               ' JOIN payments p ON p.cartId = c.id'. 
+        $result = DB::doQuery(  ' SELECT * FROM ' .self::$tableName. ' c'.
+                                ' JOIN payments p ON p.cartId = c.id'. 
                                 ' WHERE p.paid = 0 and c.id ='.$id. 
-                               ' LIMIT 1');
-        
+                                ' LIMIT 1');
+
+        if($result != null){
+            return $result->fetch_object(__CLASS__);
+        }
+
+        return null;
+
         // Helper::varDebug($result);
         // exit();
-        $carts = array();
+        // $carts = array();
 
-        while ($cart = $result->fetch_object("Cart"))
-            $carts[] = $cart;
+        // while ($cart = $result->fetch_object("Cart"))
+        //     $carts[] = $cart;
 
-        return $carts;
+        // return $carts;
     }
 
     public static function getByIdWithProperties($id)
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName .' c '.
-                                   ' JOIN cart_items ci ON ci.cartId = c.id
-                                    JOIN products p ON p.id = ci.productId
-                                    WHERE c.id ='.$id);
+                                ' JOIN cart_items ci ON ci.cartId = c.id
+                                JOIN products p ON p.id = ci.productId
+                                WHERE c.id ='.$id);
         
         $carts = array();
 
@@ -83,17 +95,12 @@ class Cart extends BaseEntity
         return $carts;
     }
 
-    public function getAllProducts()
-    {
-        $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
-
-        $products = array();
-
-        while ($product = $result->fetch_object("Cart"))
-        {
-            $products[] = $product;
-        }
-        return $products;
-    }
-
+    // public static function getItems(int $cartId)
+    // {
+    //     'SELECT * FROM user_sessions us JOIN cart_items ci ON ci.cartId = us.cartId JOIN products p ON p.id = ci.productId WHERE sessId='63z105vp8k7tjq6qn3g1gf0u7nm8gsao''
+    //     $result = DB::doQuery('SELECT * FROM '.self::$tableName.' c'.
+    //                             ' JOIN cart_items ci ON ci.cartId ='.$cartId.
+    //                             ' JOIN products p ON p.id = ci.productId'.
+    //                             ' WHERE  ')
+    // }
 }

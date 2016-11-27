@@ -23,7 +23,7 @@
             </a>
             <div id="login">
                 <?php if(!isset($_SESSION['logged'])):?>
-                    <a href="login.php" 
+                    <a href="?type=login" 
                     <!--onclick="alert('login');event.preventDefault();-->
                     ">Login</a>
                     <a href="login.php">Registration</a>

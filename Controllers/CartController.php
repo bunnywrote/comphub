@@ -1,4 +1,5 @@
 <?php
+require_once (ROOT."/Models/Session.php");
 require_once (ROOT."/Models/Cart.php");
 require_once (ROOT."/Models/CartItem.php");
 
@@ -19,6 +20,7 @@ class CartController extends Controller
         return Cart::getById($id);
     }
 
+    //TODO remove
     public function getLastNotPaidCartById(int $id)
     {
         // return cart with payment
@@ -27,33 +29,38 @@ class CartController extends Controller
 
     public function addToCart(int $productId, int $quantity)
     {
-        if(isset($_SESSION['cartId'])){
-            $cart = $this->getLastNotPaidCartById((int) $_SESSION['cartId']);
+        // session doesn't exist
+        if(isset($_SESSION['sessid'])){
+            $session = Session::getBySessId($_SESSION['sessid']);
 
-            if($cart != null){
-                //Add to existed cart
-                $cartItem = new CartItem();
-                $cartItem->cartId = $cart->id;
-                $cartItem->productId = $productId; #TODO check if product exist
-                $cartItem->quantity = $quantity;
+             Helper::varDebug($session);
 
-                CartItem::create($cartItem); #TODO check if cartItem with the productId has been added
-                return true;
-            }
+            if($session !== null)
+                $cart = Cart::getNotPaidCartById((int) $session->cartId);
         }
-        //todo create new cart and add product
-        $cart = new Cart();
-        $cart->totalCost = 22222;
         
-        $cartId = Cart::create($cart);
+        // cart doesn't exist
+        if(!isset($cart))
+        {
+            $cart = new Cart();
+            $cart->totalCost = 22222; #TODO calculate total cost
+            $cartId = Cart::create($cart);  
+            
+            if ($session == null) 
+                Session::create($_SESSION['sessid'], $cartId);     
+        }
 
         $cartItem = new CartItem();
-        $cartItem->cartId = $cartId;
+        $cartItem->cartId = $cartId != null ? $cartId : $cart->id;
         $cartItem->productId = $productId; #TODO check if product exist
         $cartItem->quantity = $quantity;
 
-        CartItem::create($cartItem); #TODO check if cartItem with the productId has been added
+        Helper::varDebug($cart);        
+        Helper::varDebug($cartId);        
+        Helper::varDebug($cartItem);        
+        exit();
 
+        Cart::add($cartItem);
         return true;
     }
 }

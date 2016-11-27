@@ -42,7 +42,7 @@ class DB {
     }
 
     public static function doQuery($sql){
-        // Helper::varDebug($sql);
+         Helper::varDebug($sql);
         return self::getInstance()->getDbConnection()->query($sql);
     }
 

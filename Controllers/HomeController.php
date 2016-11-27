@@ -9,6 +9,13 @@ class HomeController extends Controller {
         $this->template = "index";
         $this->viewBag['categories'] = $this->mapCategoriesToUrls(Category::getAllByParentId());
 
+        if(isset($_SESSION['sessid']))
+        {
+            $session = Session::getBySessId($_SESSION['sessid']);
+            //Helper::varDebug($session);
+            $this->viewBag['cartItems'] = $session !== null ? CartItem::getItems($session->cartId) : null;
+        }
+
         $this->getView("Home", $this->template);
     }
 
@@ -21,7 +28,7 @@ class HomeController extends Controller {
 
     private function mapCategoriesToUrls($categories)
     {
-        //TODO beautify
+        #TODO beautify
         foreach($categories as $key => $value){
             switch($_SESSION['lang']){
                 case 'de':

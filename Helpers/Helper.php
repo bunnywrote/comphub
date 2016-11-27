@@ -12,5 +12,10 @@ class Helper{
     {
         return "?type=product&id=".$id;
     }
+
+    public static function generateSessId()
+    {
+        return substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0, 32);
+    }    
 }
 ?>
