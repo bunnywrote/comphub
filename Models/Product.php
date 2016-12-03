@@ -109,7 +109,7 @@ class Product extends BaseEntity
         {
             $products[] = $product;
         }
-        return count($products) > 0 ? $products[0] : null;;
+        return count($products) > 0 ? $products[0] : null;
     }
 
     public static function  getProductByHdd($value)
