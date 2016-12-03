@@ -48,7 +48,8 @@ class Category extends BaseEntity{
 
         $categories = array();
 
-        while($category = $result->fetch_object("Category")){
+        while($category = $result->fetch_object("Category"))
+        {
             $categories[] = $category;
         }
         return $categories;
