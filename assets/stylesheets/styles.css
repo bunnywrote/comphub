@@ -29,6 +29,7 @@ header .logo{
 }
 
 header .logo img{
+    margin-left: 10px;
     height: 5em;
 }
 
@@ -60,6 +61,7 @@ header .langs{
 
 nav{
     background: azure;
+    margin-left: 10px;
 }
 
 nav ul{

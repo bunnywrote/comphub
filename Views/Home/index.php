@@ -1,9 +1,30 @@
 <?php require_once(ROOT."/Views/Shared/header.php"); ?>
 <main>
+<!--    <link rel="stylesheet" href="/assets/stylesheets/styles.css">-->
+    <link rel="stylesheet" href="/assets/stylesheets/search.css">
+
     <section>
         Home
     </section>
+    <aside>
+        <div>
+            <form>
+                <div>
+                    <input type="text" id="searchWindow" placeholder="Search..">
+                </div>
+                <div>
+                    <input type="button" name="search" id="searchItem" value="search">
+                </div>
+            </form>
+        </div>
+        <div>
+            <ul id="items">
+            </ul>
+        </div>
+    </aside>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="/assets/scripts/search.js" async></script>
     <!--<aside>
         <div class="user-login">
             <form action="login.php" method="post">
@@ -21,7 +42,7 @@
             </form>
         </div>
     </aside>-->
-<?php require_once(ROOT."/Views/Shared/sidebar.php") ?>
+<?php //require_once(ROOT."/Views/Shared/sidebar.php") ?>
 </main>
 
 <?php require_once(ROOT."/Views/Shared/footer.php") ?>
