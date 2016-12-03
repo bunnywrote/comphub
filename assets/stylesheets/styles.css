@@ -14,7 +14,7 @@ header, section, footer, aside, nav, main, article, figure, div {
     font-family: 'Noto Sans', sans-serif;
 }
 
-a, a::active, a::visited{
+a, a:active, a:visited{
     color: #0000ff;
 }
 
