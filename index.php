@@ -8,6 +8,7 @@ require_once("Controllers/AuthController.php");
 require_once("Controllers/CategoryController.php");
 require_once("Controllers/ProductController.php");
 require_once("Controllers/CartController.php");
+require_once("Controllers/SearchController.php");
 
 require_once("Helpers/Helper.php");
 require_once("Helpers/CultureHelper.php");
@@ -23,7 +24,7 @@ if(!isset($_COOKIE['sessid']) && !isset($_SESSION['sessid'])){
     $_SESSION["sessid"] = $sessId;
 }
 
-Helper::varDebug($_SESSION);
+//Helper::varDebug($_SESSION);
 
 if(isset($_COOKIE['lang'])){
     $_SESSION['lang'] = $_COOKIE['lang'];
@@ -49,6 +50,10 @@ if(count($_GET) > 0){
         case "product":
             $controller = new ProductController();
             $controller->actionIndex($_GET['id']);
+            exit();
+        case "search":
+            $controller = new SearchController();
+            $controller->doSearch($_GET['query']);
             exit();
         case "cart":
             if(isset($_POST['id']) && isset($_POST['count'])){
