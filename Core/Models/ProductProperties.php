@@ -10,7 +10,6 @@ class ProductProperties extends BaseEntity
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(ProductProperties $productProperties)
@@ -40,18 +39,26 @@ class ProductProperties extends BaseEntity
 
     public function get($id)
     {
-        return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+
+        $properties = array();
+
+        while($property = $result->fetch_object("Product"))
+        {
+            $properties[] = $property;
+        }
+        return $properties;
     }
 
     public function getAllProducts()
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
 
-        while ($product = $result->fetch_object("ProductProperties"))
+        while ($property = $result->fetch_object("ProductProperties"))
         {
-            $products[] = $product;
+            $properties[] = $property;
         }
-        return $products;
+        return $properties;
     }
 
 }
