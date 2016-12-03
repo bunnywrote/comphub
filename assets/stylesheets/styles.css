@@ -257,14 +257,23 @@ ul li ul li{
     color: black;
 }*/
 
-.productImage {
+.sectionOverview {
+    padding: 10px;
+    margin: 10px;
+    margin-right: 10px;
+}
 
+.productImage {
+    margin-right: 10px;
 }
 
 .shortSpecification {
-
+    margin-right: 30px;
+    padding: 10px;
 }
 
 .longSpecification {
-
+    padding: 10px;
+    margin: 10px;
+    margin-right: 10px;
 }
