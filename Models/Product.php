@@ -44,18 +44,36 @@ class Product extends BaseEntity
 
     public static function getById($id)
     {
-        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id. 'LIMIT 1');
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
 
-        if($result != null){
-            return $result->fetch_object("Product");
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
         }
+        return count($products) > 0 ? $products[0] : null;
+    }
 
-        return null;
+    public static function getByIdWithProperty($id)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' p 
+                                JOIN product_properties pp ON p.id = pp.prodId
+                                JOIN properties pr ON pp.propId = pr.id
+                                where p.id = '.$id);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return count($products) > 0 ? $products[0] : null;
     }
 
     public static function getByCategoryId($id)
     {
-        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE categoryId='.$id);
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE categoryId = '.$id);
 
         $products = array();
 
@@ -64,6 +82,51 @@ class Product extends BaseEntity
             $products[] = $product;
         }
         return $products;
+    }
+
+    public static function getProductByName($name)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE name like \'%'.$name.'%\'');
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
+    }
+
+    public static function getProductByRam($value)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' p 
+                                JOIN product_properties pp ON p.id = pp.prodId
+                                JOIN properties pr ON pp.propId = pr.id
+                                JOIN units u ON pr.unitID = u.id
+                                where pr.nameEN = "RAM Capacity" AND u.value = '.$value);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return count($products) > 0 ? $products[0] : null;;
+    }
+
+    public static function  getProductByHdd($value)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' p 
+                                JOIN product_properties pp ON p.id = pp.prodId
+                                JOIN properties pr ON pp.propId = pr.id
+                                JOIN units u ON pr.unitID = u.id
+                                where pr.nameEN = "HDD Capacity" AND u.value = '.$value);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return count($products) > 0 ? $products[0] : null;
     }
 
     public function getAllProducts()
