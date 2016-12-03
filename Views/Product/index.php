@@ -3,16 +3,36 @@
 ?>
 <main>
     <section>
-<!--        --><?php //Helper::varDebug($this->viewBag)?>
-        <div class="productImage">
-
-        </div>
-        <div class="shortSpecification">
-
-        </div>
-        <div class="longSpecification">
-            
-        </div>
+        <?php if(isset($this->viewBag['product'])):?>
+            <div class="sectionOverview">
+                <div class="productImage">
+                    <img src="assets/images/AppleMacBookPro.jpg">
+                </div>
+                <div class="shortSpecification">
+                    <span><h2><?= $this->viewBag['product']->name ;?></h2></span>
+                </div>
+                <div class="shortSpecification">
+                    <span><h3>Price: </h3><?= $this->viewBag['product']->price ;?> CHF</span>
+                </div>
+            </div>
+            <div class="longSpecification">
+<!--                <ul>-->
+                <div>
+                    <p>Specification:</p>
+<!--                </ul>-->
+                </div>
+                <div>
+                    <p><?= $this->viewBag['product']->descrEN ;?></p>
+                </div>
+            </div>
+            <div class="longSpecification">
+<!--                <ul>-->
+                <div>
+                    <p><?= $this->viewBag['product']->nameEN ;?></p>
+<!--                </ul>-->
+                </div>
+            </div>
+        <?php endif;?>
     </section>
     <aside>
         <div class="user-login">
