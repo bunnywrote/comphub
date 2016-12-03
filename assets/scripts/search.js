@@ -6,7 +6,7 @@ $(document).ready(function () {
         var value = $("#searchWindow").val();
 
         if(value.length > 1) {
-            $.get("/search.php?query="+value, function (data) {
+            $.get("/Controllers/SearchController.php?query="+value, function (data) {
                 // parse JSON string into JS-Object
                 var products = JSON.parse(data);
 
