@@ -1,22 +1,30 @@
 <?php
-    define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]));
+    require_once(ROOT.'/Controllers/Controller.php');
     require_once(ROOT.'/Helpers/Helper.php');
     require_once(ROOT.'/Models/Product.php');
     require_once(ROOT.'/Models/SearchResult.php');
 
-    if(isset($_GET['query'])){
+class SearchController extends Controller
+{
 
-        $product = new Product();
-        $product->name = $_GET['query'];
+    public function doSearch($value)
+    {
 
-        $products = Product::getProductByName($product->name);
-        $searchResults = array();
+        if ($value) {
 
-        foreach ($products as $product){
-            $searchResults[] = new SearchResult($product);
+            $product = new Product();
+            $product->name = $_GET['query'];
+
+            $products = Product::getProductByName($product->name);
+            $searchResults = array();
+
+            foreach ($products as $product) {
+                $searchResults[] = new SearchResult($product);
+            }
+            echo json_encode($searchResults);
         }
-
-        echo json_encode($searchResults);
     }
+
+}
 
 ?>
