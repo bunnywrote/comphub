@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+:root{
+    --main-cloud: #ecf0f1;
+    --main-emerland : #2ecc71;
+    --main-belizehole : #2980b9;
+    --main-dark: #494949;
+    --main-peterriver: #3498db;
+}
+
+*{
+    padding: 0;
+    margin:0;
+}
+
+html{
+    font-size: 16px;
+}
+
+body{
+    font-size: 100%;
+}
+
+header, section, footer, aside, nav, main, article, figure, div {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+header{
+    background: var(--main-dark);
+    color: #FFFFFF;
+}
+
+header .row>div{
+    display: flex;
+    align-items: center;
+}
+
+header a{
+    color: #FFFFFF;
+    text-underline: none;
+}
+
+.logo{
+    display: block;
+}
+
+.logo img{
+    max-width: 60px;
+}
+
+#langs span{
+    color: black;
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+#langs li{
+    display: flex;
+    align-items: center;
+}
+
+#langs a{
+    text-decoration: none;
+}
+
+nav {
+    background: var(--main-belizehole);
+    color: #FFFFFF;
+}
+
+main{
+    background: var(--main-cloud);
+}
+
+aside{
+    background: var(--main-peterriver);
+}
+
+footer{
+    background: var(--main-dark);
+    color: #FFFFFF;
+    padding: 1em 0;
+}
+
+.list-unstyled{
+    list-style: none;
+}
+
+/*from 62em to smaller*/
+@media only screen and (max-width: 62em) {
+    .container-fluid{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .hidden-sm, .hidden-xs{
+        display: none !important;
+    }
+
+    .reverse-sm{
+        flex-direction: column-reverse;
+    }
+}
+
+/*from 48em to bigger*/
+@media only screen and (min-width: 48em) {
+    .logo img{
+        max-width: 170px;
+    }
+}
+
+@media only screen and (min-width: 62em) {
+    .hidden-md{
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 75em) {
+    .hidden-lg{
+        display: none !important;
+    }
+}

@@ -58,8 +58,8 @@ class Product extends BaseEntity
     public static function getByIdWithProperty($id)
     {
         $result = DB::doQuery('SELECT * FROM '.self::$tableName.' p 
-                                JOIN product_properties pp ON p.id = pp.prodId
-                                JOIN properties pr ON pp.propId = pr.id
+                                LEFT JOIN product_properties pp ON p.id = pp.prodId
+                                LEFT JOIN properties pr ON pp.propId = pr.id
                                 where p.id = '.$id);
 
         $products = array();

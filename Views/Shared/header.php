@@ -22,13 +22,16 @@
                 <img src="/assets/images/logo2.svg">
             </a>
             <div id="login">
-                <?php if(!isset($_SESSION['logged'])):?>
-                    <a href="?type=login" 
+                <?php if(!isset($_SESSION['user'])):?>
+                    <a href="?type=signin"
                     <!--onclick="alert('login');event.preventDefault();-->
-                    ">Login</a>
-                    <a href="login.php">Registration</a>
+                    "><?= Localizer::translate('Sign In')?></a>
+                    <a href="?type=signup"><?= Localizer::translate('Sign Up')?></a>
                 <?php else: ?>
-                    <span>user name</span>
+                    <a href="?type=signin"><?=$_SESSION['user']?></a>
+                    <a href="?type=logout"
+                    <!--onclick="alert('login');event.preventDefault();-->
+                    "><?= Localizer::translate('Sign Out')?></a>
                 <?php endif; ?>
             </div>
             <ul class="langs f32">

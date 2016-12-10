@@ -5,18 +5,16 @@ class Payment extends BaseEntity
 {
     private static $tableName = "payments";
 
-    public $id, $type, $amount, $custId, $cartId;
+    public $id, $type, $amount, $userId, $cartId;
 
     public function __construct()
     {
         parent::__construct();
-        echo(__CLASS__);
     }
 
     public static function create(Payment $payment)
     {
-        $query =
-            "INSERT INTO " . self::$tableName . "(type, amount, custId, cartId) VALUES (?,?,?,?)";
+        $query = "INSERT INTO " . self::$tableName . "(type, amount, userId, cartId) VALUES (?,?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
@@ -24,7 +22,7 @@ class Payment extends BaseEntity
             'siii',
             $payment->type,
             $payment->amount,
-            $payment->custId,
+            $payment->userId,
             $payment->cartId
         );
 
@@ -35,25 +33,15 @@ class Payment extends BaseEntity
         $preparedQuery->execute();
     }
 
-    public function update()
+    public static function getPaymentByUserId(int $userId)
     {
-        //TODO implement
-    }
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE userId = ' . $userId .' and paid = 0 LIMIT 1');
 
-    public function get($id){
-        return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
-    }
-
-    public function getAllPayments()
-    {
-        $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
-
-        while ($payment = $result->fetch_object("Payment"))
-        {
-            $payments[] = $payment;
+        if($result != null){
+            return $result->fetch_object(__CLASS__);
         }
-        return $payments;
-    }
 
+        return null;
+    }
 }
 ?>

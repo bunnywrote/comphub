@@ -187,17 +187,36 @@ aside{
   -webkit-transition:0.2s ease all;
 }
 
+.title{
+    padding: 1em;
+}
+
+.title h3{
+    margin: 0 auto;
+}
+
 .user-cart{
     background:  #fff;
+    flex-direction: column;
+}
+
+.user-cart>div{
+    align-items: center;
 }
 
 .user-cart ul{
     width: 100%;
-    padding: 1em;
 }
 
 .user-cart li{
     list-style: none;
+    padding: 1em;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid rgba(146, 146, 146, 0.6);
+}
+
+.user-cart li:first-child{
+    border-top: none;
 }
 
 .cart-item .thumbnail{

@@ -9,11 +9,13 @@ class HomeController extends Controller {
         $this->template = "index";
         $this->viewBag['categories'] = $this->mapCategoriesToUrls(Category::getAllByParentId());
 
-        if(isset($_SESSION['sessid']))
+        if(isset($_SESSION['logged_in']))
         {
             $session = Session::getBySessId($_SESSION['sessid']);
             //Helper::varDebug($session);
-            $this->viewBag['cartItems'] = $session !== null ? CartItem::getItems($session->cartId) : null;
+            $payment = Payment::getPaymentByUserId($session->userId);
+            if($payment !== null)
+                $this->viewBag['cartItems'] = $session !== null ? CartItem::getItems($payment->cartId) : null;
         }
 
         $this->getView("Home", $this->template);

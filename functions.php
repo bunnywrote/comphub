@@ -15,7 +15,7 @@
         return urldecode($_GET[$name]);
     }
 
-    // function navigation($language, $pageId){
+    // function localization($language, $pageId){
         
     //     $localizer = getLocalizer($language);
 
@@ -87,7 +87,7 @@
     }
 
     function getLocalizer($lang){
-        $file = file_get_contents('Resources/navigation/'.$lang.'.json');
+        $file = file_get_contents('Resources/localization/'.$lang.'.json');
 
         if($file)
             $result = json_decode($file, true);

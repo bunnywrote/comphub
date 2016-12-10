@@ -7,6 +7,7 @@ class ProductController extends Controller{
         $this->template = "index";
 
         $this->viewBag['product'] = Product::getByIdWithProperty($id);
+
 //        Helper::varDebug($this->viewBag);
 
         $this->getView("Product", $this->template);

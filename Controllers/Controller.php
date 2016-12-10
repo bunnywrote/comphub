@@ -4,6 +4,7 @@ abstract class Controller{
 
     protected function getView($viewFolder, $template){
         try {
+            #TODO is $this->template call correct?
             $file = ROOT . '/Views/'.$viewFolder.'/' . strtolower($this->template) . '.php';
 
             if (file_exists($file)) {

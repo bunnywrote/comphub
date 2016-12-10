@@ -55,6 +55,17 @@ class Cart extends BaseEntity
         }
     }
 
+    public static function getById(int $cartId)
+    {
+        $result = DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $cartId .' LIMIT 1');
+
+        if($result != null){
+            return $result->fetch_object(__CLASS__);
+        }
+
+        return null;
+    }
+
     public static function getNotPaidCartById(int $id)
     {
         Helper::varDebug($id);

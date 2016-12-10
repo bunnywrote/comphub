@@ -10,7 +10,7 @@
  <g>
   <title>Layer 1</title>
   <rect stroke="#000" rx="10" id="svg_1" height="181.000005" width="216.999994" y="1.500003" x="290.999991" stroke-width="0" fill="#ff7f00"/>
-  <text font-weight="bold" stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_2" y="126.659217" x="311.499953" stroke-opacity="null" stroke-width="0" fill="#ffffff">hub</text>
-  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_3" y="126.660264" x="-1.999014" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Comp</text>
+  <text font-weight="bold" stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_2" y="126.659217" x="311.499953" stroke-opacity="null" stroke-width="0" fill="#000000">hub</text>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="100" id="svg_3" y="126.660264" x="-1.999014" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">Comp</text>
  </g>
 </svg>
