@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+*{
+    padding: 0;
+    margin:0;
+}
+
+body{
+    font-size: 100%;
+}
+
+header, section, footer, aside, nav, main, article, figure, div {
+    display: flex; 
+    font-family: 'Noto Sans', sans-serif;
+}
+
+a, a:active, a:visited{
+    color: #0000ff;
+}
+
+header{
+    background: yellow;
+    justify-content: space-between;
+}
+
+header .logo{
+    display: flex;
+    align-items: center;
+}
+
+header .logo img{
+    margin-left: 10px;
+    height: 5em;
+}
+
+#login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header .langs{
+    list-style: none;
+}
+
+
+.langs span{
+    color: black;
+    font-weight: bold;
+    padding-right: 1em; 
+}
+
+.langs li{
+    display: flex;
+    align-items: center;
+}
+
+.langs a{
+    text-decoration: none;
+}
+
+nav{
+    background: azure;
+    margin-left: 10px;
+}
+
+nav ul{
+    display: inline-block;
+    list-style: none;
+}
+
+nav ul>li{
+    display: inline-block;
+    padding-right: 1em;
+}
+
+main{
+
+}
+
+section{
+    background: slategray;
+    min-height: 500px;
+    flex: 2;    
+    flex-direction: column;
+}
+
+
+
+article{
+    background: lightgrey;
+    margin-bottom: 5px;
+}
+
+article:last-child{
+    margin: 0;
+}
+
+.article-image img{
+    width: 100px;
+    height: 100px;
+}
+
+.article-description{
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 2;
+}
+
+.article-buy{
+    flex: 1;
+    align-items: center;
+}
+
+.btn{
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.article-buy a, input[type='submit']{
+    background-color: #0f9d58;
+    color: #fff;
+}
+
+.article-buy input[type='number']{
+    border: none;
+    width: 120px;
+    height: 32px;
+}
+
+aside{
+    background: dodgerblue;
+    flex:1;
+    flex-direction: column;
+}
+
+.user-login{
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.4);
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.login-input
+{ 
+  position: relative; 
+  margin-bottom:45px; 
+  margin-top: 12px;
+}
+
+.login-input input{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #3f51b5;
+  border-radius: 0px;
+}
+
+.login-input input:focus
+{
+  outline:none;
+}
+
+.login-input label
+{
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+.title{
+    padding: 1em;
+}
+
+.title h3{
+    margin: 0 auto;
+}
+
+.user-cart{
+    background:  #fff;
+    flex-direction: column;
+}
+
+.user-cart>div{
+    align-items: center;
+}
+
+.user-cart ul{
+    width: 100%;
+}
+
+.user-cart li{
+    list-style: none;
+    padding: 1em;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid rgba(146, 146, 146, 0.6);
+}
+
+.user-cart li:first-child{
+    border-top: none;
+}
+
+.cart-item .thumbnail{
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 1em;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.cart-item div{
+    display: flex;
+    align-content: center;
+}
+
+.cart-item-details div{
+    flex-direction: column;
+}
+
+.item-name{
+    font-weight: bold;
+}
+
+.item-count input[type='number']{
+    width: 35;
+    height: 20px;
+}
+
+footer{
+    background: black;
+    color: white;
+}
+
+.footer-block{
+    flex-direction: column;
+    padding: 1em;
+}
+
+.footer-block ul{
+    list-style: none;
+    margin: 1em 0;
+}
+
+/*  css test */
+/*li{
+    color: blue;
+}
+
+li.item{
+    color: red;
+}
+
+ul li ul li{
+    color: green;
+}
+
+#the-item{
+    color: black;
+}*/
+
+.sectionOverview {
+    padding: 10px;
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.productImage {
+    margin-right: 10px;
+}
+
+.shortSpecification {
+    margin-right: 30px;
+    padding: 10px;
+}
+
+.longSpecification {
+    padding: 10px;
+    margin: 10px;
+    margin-right: 10px;
+}

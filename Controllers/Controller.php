@@ -10,10 +10,10 @@ abstract class Controller{
             if (file_exists($file)) {
                 $this->render($file);
             } else {
-                throw new customException('Template ' . $template . ' not found!');
+                throw new Exception('Template ' . $template . ' not found!');
             }
         }
-        catch (customException $e) {
+        catch (Exception $e) {
             echo $e->errorMessage();
         }
     }

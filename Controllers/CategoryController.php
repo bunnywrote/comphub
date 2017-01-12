@@ -9,9 +9,12 @@ class CategoryController extends Controller
     {
         $this->template = "index";
 
-        $this->viewBag['categories'] = $this->mapCategoriesToUrls(Category::getAllByParentId($id));
+        $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
+        $this->viewBag['categories'] = Category::getAllByParentId($id);
         $this->viewBag['products'] = Product::getByCategoryId($id);
-        $this->viewBag['cartItems'] = CartItem::getItemsWithProducts($_SESSION['sessid']);
+
+        if(isset($_SESSION['sessid']))
+            $this->viewBag['cartItems'] = CartItem::getItemsWithProducts($_SESSION['sessid']);
 
         $this->getView("Category", $this->template);
     }

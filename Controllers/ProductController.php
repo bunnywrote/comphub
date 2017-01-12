@@ -6,9 +6,16 @@ class ProductController extends Controller{
     {
         $this->template = "index";
 
+        $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
         $this->viewBag['product'] = Product::getByIdWithProperty($id);
 
-//        Helper::varDebug($this->viewBag);
+        if(isset($_SESSION['logged_in']))
+        {
+            $session = Session::getBySessId($_SESSION['sessid']);
+            $payment = Payment::getPaymentByUserId($session->userId);
+            if($payment !== null)
+                $this->viewBag['cartItems'] = $session !== null ? CartItem::getItems($payment->cartId) : null;
+        }
 
         $this->getView("Product", $this->template);
     }

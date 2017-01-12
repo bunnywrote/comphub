@@ -1,8 +1,8 @@
 {
 	"Contact": "Contact",
 	"Sign In": "Connectez-vous",
-	"Sign Up": "s'inscrire",
-	"Sign Out": "se déconnecter",
+	"Sign Up": "S'inscrire",
+	"Sign Out": "Se déconnecter",
 	"Email": "Adresse email",
 	"Password": "Mot de passe",
 	"Send" : "Se connecter",
@@ -10,5 +10,8 @@
 	"First Name" : "Prénom",
 	"Last Name" : "Nom de famille",
 	"My Profile": "Mon profil",
-	"Cart items": "Articles de panier"
+	"Cart items": "Articles de panier",
+	"New products" : "Produits nouveaux",
+	"To details" : "Aux détails",
+	"Top Sellers" : "Meilleures ventes"
 }

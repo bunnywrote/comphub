@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/stylesheets/flags32.css">
     <link rel="stylesheet" href="assets/stylesheets/flags16.css">
     <link rel="stylesheet" href="assets/stylesheets/fonts/font-awesome.css">
-    <link rel="stylesheet" href="assets/stylesheets/styles2.css">
+    <link rel="stylesheet" href="assets/stylesheets/styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png?v=11" sizes="32x32" />
     <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png?v=11" sizes="16x16">
@@ -27,6 +27,18 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="user-data col-xs-6 col-sm-6 hidden-md">
+                    <a href="?type=signin">
+                        <span class="fa fa-user"></span>
+                        <span>denis</span>
+                    </a>
+                    <a href="?type=cart">
+                        <span class="fa fa-shopping-cart"></span>
+                        <span>3</span>
+                    </a>
+                </div>
+
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 end-xs hidden-sm">
 
                     <div id="login" class="col-xs-6">
@@ -61,8 +73,9 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <span class="fa fa-bars"></span>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="search col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <span class="fa fa-search"></span>
+                    <input type="text" placeholder="Search"></div>
                 </div>
             </div>
         </div>
@@ -70,7 +83,14 @@
 
     <nav class="row">
         <div class="col-xs-12 hidden-xs">
-            nav
+            <ul class="nav-list list-unstyled">
+                <li>
+                    Computer
+                </li>
+                <li>
+                    Monitor
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -83,7 +103,7 @@
         </aside>
     </main>
 
-    <footer class="row">
+    <footer>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 start-xs">
             <h4>Contact</h4>
             <ul class="list-unstyled">

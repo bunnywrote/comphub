@@ -5,6 +5,9 @@ define("ROOT", realpath($_SERVER["DOCUMENT_ROOT"]));
 require_once("Controllers/Controller.php");
 require_once("Controllers/Widget.php");
 require_once("Widgets/ShoppingCart.php");
+require_once("Widgets/Slider.php");
+require_once("Widgets/TopSellerList.php");
+require_once("Widgets/Breadcrumbs.php");
 require_once("Controllers/HomeController.php");
 require_once("Controllers/AuthController.php");
 require_once("Controllers/CategoryController.php");
@@ -16,6 +19,7 @@ require_once("Controllers/SearchController.php");
 require_once("Helpers/Helper.php");
 require_once("Helpers/Localizer.php");
 require_once("Helpers/CultureHelper.php");
+require_once("Helpers/UrlHelper.php");
 
 $controller;
 
@@ -29,7 +33,7 @@ if(!isset($_COOKIE['sessid']) && !isset($_SESSION['sessid'])){
 }
 
 //Helper::varDebug($_SESSION);
-
+//exit();
 if(isset($_COOKIE['lang'])){
     $_SESSION['lang'] = $_COOKIE['lang'];
 }

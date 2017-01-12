@@ -1,11 +1,10 @@
 <?php
 require_once(ROOT."/Views/Shared/header.php");
-
-//    Helper::varDebug($this->viewBag);
 ?>
 
-    <main>
-        <section>
+    <main class="row reverse-sm">
+        <section class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <h3>To be implemented</h3>
             <?php if(isset($this->viewBag["products"])):?>
                 <?php foreach($this->viewBag["products"] as $key=>$value): ?>
                     <article>
@@ -37,8 +36,10 @@ require_once(ROOT."/Views/Shared/header.php");
                 <?php endforeach; ?>
             <?php endif;?>
         </section>
+        <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h3>To be implemented</h3>
 
-        <?php require_once(ROOT."/Views/Shared/sidebar.php") ?>
+        </aside>
     </main>
 
 <?php require_once(ROOT."/Views/Shared/footer.php") ?>

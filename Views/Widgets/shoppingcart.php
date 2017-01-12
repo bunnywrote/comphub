@@ -10,13 +10,13 @@
                         <img class="thumbnail" src="/assets/images/placeholder.png">
                         <div>
                             <div class="item-name"><?=$value->name ?></div>
-                            <div class="item-descr"><?=$value->descrEN ?></div>
+                            <div class="item-descr"><?= CultureHelper::getProperty($value, "descr")?></div>
                             <div class="item-count">
                                 <p>
                                     <a class="item-quantity" href="#">-</a>
                                     <input type="number" value="<?=$value->quantity ?>">
                                     <a class="item-quantity" href="#">+</a>
-                                    <?=$value->price ?>
+                                    <?=$value->price * $value->quantity?>
                                 </p>
                             </div>
                         </div>
@@ -26,7 +26,7 @@
         </ul>
     </div>
     <div>
-        <form action="?type=cart&action=pay" method="get">
+        <form action="?type=payment" method="post">
             <input class="btn" type="submit" value="<?=Localizer::translate('To Payment')?>">
             <!--onclick="alert('submit');event.preventDefault();" -->
         </form>

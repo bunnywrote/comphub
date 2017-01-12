@@ -12,6 +12,8 @@ class AuthController extends Controller{
 
     public function actionLogin($login = null, $pass = null)
     {
+        $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
+
         if($login == null && $pass == null){
             $this->template = "login";
         }else{
@@ -42,6 +44,8 @@ class AuthController extends Controller{
 
     public function actionSignUp($array = null)
     {
+        $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
+
         if($array == null){
             $this->template = "signup";
             $this->getView("Auth", $this->template);
@@ -78,7 +82,10 @@ class AuthController extends Controller{
         $this->getView("Auth", $this->template);
     }
 
-    public function actionProfile(){
+    public function actionProfile()
+    {
+        $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
+
         $user = User::getUserBySessId($_SESSION["sessid"]);
         $this->template = "profile";
 

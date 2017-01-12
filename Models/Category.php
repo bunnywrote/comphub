@@ -41,6 +41,19 @@ class Category extends BaseEntity{
         return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
     }
 
+    public static function getFirstLevelCategories()
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE parentId = 0');
+
+        $categories = array();
+
+        while($category = $result->fetch_object("Category"))
+        {
+            $categories[] = $category;
+        }
+        return $categories;
+    }
+
     public static function getAllByParentId($id = 0)
     {
         //todo sanity

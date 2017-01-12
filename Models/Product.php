@@ -1,5 +1,5 @@
 <?php
-    require_once(ROOT.'\Models\BaseEntity.php');
+    require_once(ROOT.'/Models/BaseEntity.php');
 
 class Product extends BaseEntity
 {
@@ -57,7 +57,7 @@ class Product extends BaseEntity
 
     public static function getByIdWithProperty($id)
     {
-        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' p 
+        $result = DB::doQuery('SELECT p.* FROM '.self::$tableName.' p 
                                 LEFT JOIN product_properties pp ON p.id = pp.prodId
                                 LEFT JOIN properties pr ON pp.propId = pr.id
                                 where p.id = '.$id);
@@ -68,12 +68,18 @@ class Product extends BaseEntity
         {
             $products[] = $product;
         }
+
+//        Helper::varDebug($products);
+//        exit();
+
         return count($products) > 0 ? $products[0] : null;
     }
 
     public static function getByCategoryId($id)
     {
-        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE categoryId = '.$id);
+        $result = DB::doQuery('SELECT p.* FROM '.self::$tableName.' p 
+                                JOIN categories c on p.categoryId = c.id
+                                WHERE c.id = '.$id.' OR c.parentId = '.$id);
 
         $products = array();
 
@@ -129,6 +135,38 @@ class Product extends BaseEntity
         return count($products) > 0 ? $products[0] : null;
     }
 
+    public static function getLatestProducts(int $count = 3)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' 
+                                WHERE created <> 0
+                                ORDER BY created DESC
+                                LIMIT '.$count);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
+    }
+
+    public static function getTopSeller(int $count = 4)
+    {
+        $result = DB::doQuery('SELECT * FROM '.self::$tableName.' 
+                                WHERE created <> 0
+                                ORDER BY name
+                                LIMIT '.$count);
+
+        $products = array();
+
+        while($product = $result->fetch_object("Product"))
+        {
+            $products[] = $product;
+        }
+        return $products;
+    }
+
     public function getAllProducts()
     {
         $result = DB::doQuery('SELECT * FROM ' . self::$tableName);
@@ -139,6 +177,5 @@ class Product extends BaseEntity
         }
         return $products;
     }
-
 }
 ?>
