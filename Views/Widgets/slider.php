@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/stylesheets/slider.css">
+<link rel="stylesheet" href="/assets/stylesheets/slider.css">
 <div class="slider-wrapper">
     <div class="title">
         <h3><?=Localizer::translate('New products')?></h3>
@@ -23,4 +23,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="assets/scripts/slider.js"></script>
+<script type="text/javascript" src="/assets/scripts/slider.js"></script>

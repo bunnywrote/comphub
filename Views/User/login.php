@@ -15,7 +15,7 @@
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
-                <form action="?type=signin" method="post">
+                <form action="/user/login" method="post">
                     <div class="login-input">
                         <input name="email" type="email" placeholder="<?=Localizer::translate('Email')?>" value="<?= isset($_POST['email']) ? $_POST['email'] : ''?>" required>
                         <span class="highlight"></span>

@@ -27,8 +27,9 @@ class HomeController extends Controller {
         $this->getView("Home", $this->template);
     }
 
-    public function actionError()
+    public function actionError(string $message = null)
     {
+        $this->viewBag["message"] = $message;
         $this->template = "error";
 
         $this->getView("Home", $this->template);

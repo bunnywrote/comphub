@@ -1,6 +1,9 @@
 <div id="cart" class="user-cart">
     <div class="title">
-        <h3><?=Localizer::translate('Cart items')?></h3>
+        <h3>
+            <span class="fa fa-shopping-cart"></span>
+            <?=Localizer::translate('Cart items')?>
+        </h3>
     </div>
     <div>
         <ul>
@@ -13,10 +16,17 @@
                             <div class="item-descr"><?= CultureHelper::getProperty($value, "descr")?></div>
                             <div class="item-count">
                                 <p>
-                                    <a class="item-quantity" href="#">-</a>
+                                    <a class="item-quantity" href="?type=cart&action=remove">
+                                        <span class="fa fa-minus-circle"></span>
+                                    </a>
                                     <input type="number" value="<?=$value->quantity ?>">
-                                    <a class="item-quantity" href="#">+</a>
+                                    <a class="item-quantity" href="?type=cart&action=add">
+                                        <span class="fa fa-plus-circle"></span>
+                                    </a>
                                     <?=$value->price * $value->quantity?>
+                                    <a class="item-quantity" href="?type=cart&action=delete">
+                                        <span class="fa fa-trash"></span>
+                                    </a>
                                 </p>
                             </div>
                         </div>

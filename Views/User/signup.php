@@ -14,7 +14,7 @@
                         </ul>
                     <?php endif; ?>
                 </div>
-                <form action="?type=signup" method="post">
+                <form action="/user/signup" method="post">
                     <div class="login-input">
                         <input name="username" type="text" placeholder="<?=Localizer::translate('Login')?>" value="<?= isset($_POST['username']) ? $_POST['username'] : ''?>" required>
                         <span class="highlight"></span>
@@ -48,12 +48,4 @@
             aside
         </aside>
     </main>
-<!--<main>-->
-<!--    <section>-->
-
-<!--    </section>-->
-<!--    <aside>-->
-<!--        aside content-->
-<!--    </aside>-->
-<!--</main>-->
 <?php require_once(ROOT."/Views/Shared/footer.php") ?>

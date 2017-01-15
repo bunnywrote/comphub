@@ -1,8 +1,10 @@
 <?php
 require_once(ROOT."/Views/Shared/header.php");
-   
-    echo("Page not found");
-    Helper::varDebug($this->viewBag);
+
+    if(isset($this->viewBag["message"]))
+        echo($this->viewBag["message"]);
+
+    //Helper::varDebug($this->viewBag);
 
 require_once(ROOT."/Views/Shared/footer.php")
 ?>

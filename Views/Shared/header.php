@@ -7,11 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--    Styles  -->
-        <link rel="stylesheet" href="assets/stylesheets/grid/flexboxgrid.css">
-        <link rel="stylesheet" href="assets/stylesheets/flags32.css">
-        <link rel="stylesheet" href="assets/stylesheets/flags16.css">
-        <link rel="stylesheet" href="assets/stylesheets/fonts/font-awesome.css">
-        <link rel="stylesheet" href="assets/stylesheets/styles.css">
+        <link rel="stylesheet" href="/assets/stylesheets/grid/flexboxgrid.css">
+        <link rel="stylesheet" href="/assets/stylesheets/flags32.css">
+        <link rel="stylesheet" href="/assets/stylesheets/flags16.css">
+        <link rel="stylesheet" href="/assets/stylesheets/fonts/font-awesome.css">
+        <link rel="stylesheet" href="/assets/stylesheets/styles.css">
 
         <!--    Icons   -->
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
@@ -38,11 +38,11 @@
                     </div>
 
                     <div class="user-data col-xs-6 col-sm-6 hidden-md">
-                        <a href="?type=signin">
+                        <a href="/user/signin">
                             <span class="fa fa-user"></span>
                             <span>denis</span>
                         </a>
-                        <a href="?type=cart">
+                        <a href="/cart/index">
                             <span class="fa fa-shopping-cart"></span>
                             <span>3</span>
                         </a>
@@ -53,13 +53,13 @@
                         <div id="login" class="col-xs-6">
                             <ul class="list-unstyled">
                                 <?php if(!isset($_SESSION['user'])):?>
-                                    <a href="?type=signin"
+                                    <a href="/user/login"
                                     <!--onclick="alert('login');event.preventDefault();-->
                                     "><?= Localizer::translate('Sign In')?></a>
-                                    <a href="?type=signup"><?= Localizer::translate('Sign Up')?></a>
+                                    <a href="/user/signup"><?= Localizer::translate('Sign Up')?></a>
                                 <?php else: ?>
-                                    <a href="?type=signin"><?=$_SESSION['user']?></a>
-                                    <a href="?type=logout"
+                                    <a href="/user/login"><?=$_SESSION['user']?></a>
+                                    <a href="/user/logout"
                                     <!--onclick="alert('login');event.preventDefault();-->
                                     "><?= Localizer::translate('Sign Out')?></a>
                                 <?php endif; ?>
@@ -74,7 +74,7 @@
                                         </li>
                                     <?php else:?>
                                         <li>
-                                            <span class="flag <?=$key?>"></span><a href="/?type=lang&value=<?=$key?>"><?=$key?></a></li>
+                                            <span class="flag <?=$key?>"></span><a href="/user/lang/<?=$key?>"><?=$key?></a></li>
                                         </li>
                                     <?php endif;?>
                                 <?php endforeach; ?>
@@ -103,7 +103,7 @@
                     <?php
                         if(isset($this->viewBag['menuItems']))
                             foreach($this->viewBag['menuItems'] as $key => $value){
-                                echo '<li><a href="'.UrlHelper::categoryToUrl($value->id).'">'.CultureHelper::getProperty($value, 'name').'</a></li>';
+                                echo '<li><a href="/category/show/'.$value->id.'">'.CultureHelper::getProperty($value, 'name').'</a></li>';
                             }
                     ?>
                 </ul>

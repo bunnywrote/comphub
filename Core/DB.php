@@ -1,11 +1,7 @@
 <?php
 
 class DB {
-    const   HOST = "localhost",
-            USER = "root",
-            PW = "",
-            DB_NAME = "comphub";
-            
+
     private static $instance;
     private $dbConnection;
 
@@ -20,8 +16,8 @@ class DB {
     private static function initConnection()
     {
         $db = self::getInstance();
-        $db->dbConnection = new mysqli(self::HOST, self::USER, self::PW, self::DB_NAME);
-        
+        $db->dbConnection = new mysqli($_ENV["DB_HOST"], $_ENV["DB_USER"], $_ENV["DB_PASS"], $_ENV["DB_NAME"]);
+
         if(mysqli_connect_errno()){
             die("Failed to connect to MySQL: " . mysqli_connect_error());
             exit();
@@ -36,7 +32,7 @@ class DB {
             $db = self::initConnection();
             return $db->dbConnection;
         }catch(Exception $ex){
-            die("I was unable to open a connection to the database. " . $ex->getMessage());
+            die("It was unable to open a connection to the database. " . $ex->getMessage());
             return null;
         }
     }

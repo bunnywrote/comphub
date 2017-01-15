@@ -1,7 +1,7 @@
 <?php
 require_once(ROOT . '/Models/User.php');
 
-class AuthController extends Controller{
+class UserController extends Controller{
     protected $template;
 
     public function actionIndex()
@@ -10,13 +10,21 @@ class AuthController extends Controller{
             $this->actionLogin();
     }
 
-    public function actionLogin($login = null, $pass = null)
+    public function actionLogin()
     {
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
+            header("Location: /user/profile");
+            die();
+        }
+
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
 
-        if($login == null && $pass == null){
+        if(!isset($_POST['email']) || !isset($_POST['password'])){
             $this->template = "login";
         }else{
+            $login = $_POST['email'];
+            $pass = $_POST['password'];
+
             $user = User::getUser($login, $pass);
 
             if($user !== null){
@@ -39,36 +47,36 @@ class AuthController extends Controller{
             }
         }
 
-        $this->getView("Auth", $this->template);
+        $this->getView("User", $this->template);
     }
 
-    public function actionSignUp($array = null)
+    public function actionSignup()
     {
+        Helper::varDebug($_POST);
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
 
-        if($array == null){
+        if(!isset($_POST['username']) && !isset($_POST['password']) && !isset($_POST['firstName']) && !isset($_POST['lastName']) && !isset($_POST['email'])){
             $this->template = "signup";
-            $this->getView("Auth", $this->template);
+            $this->getView("User", $this->template);
         }else{
-            $errors = $this->formValidate($array);
+            $errors = $this->formValidate($_POST);
 
             if (count($errors) !== 0){
                 $this->viewBag["errors"] = $errors;
                 $this->template = "signup";
             }else{
                 $user = new User();
-                $user->email = $array['email'];
-                $user->password = Helper::getHash($array['password']);
-                $user->username = $array['username'];
-                $user->firstName = $array['firstName'];
-                $user->lastName = $array['lastName'];
+                $user->email = $_POST['email'];
+                $user->password = Helper::getHash($_POST['password']);
+                $user->username = $_POST['username'];
+                $user->firstName = $_POST['firstName'];
+                $user->lastName = $_POST['lastName'];
                 $user->id = User::create($user);
 
-                //$this->viewBag['user'] = $user;
                 $this->template = "login";
             }
 
-            $this->getView("Auth", $this->template);
+            $this->getView("User", $this->template);
         }
     }
 
@@ -79,15 +87,20 @@ class AuthController extends Controller{
         setcookie(session_name('sessid'),'',1);
 
         $this->template = "login";
-        $this->getView("Auth", $this->template);
+        $this->getView("User", $this->template);
     }
 
     public function actionProfile()
     {
+        if(isset($_SESSION['logged_in']) && !$_SESSION['logged_in']){
+            header("Location: /user/login");
+            die();
+        }
+
+        $this->template = "profile";
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
 
         $user = User::getUserBySessId($_SESSION["sessid"]);
-        $this->template = "profile";
 
         $this->viewBag["user"] = $user;
         $this->viewBag["cartItems"] = CartItem::getItemsWithProducts($_SESSION['sessid']);
@@ -101,7 +114,21 @@ class AuthController extends Controller{
 
         //Helper::varDebug($this->viewBag);
 
-        $this->getView("Auth", $this->template);
+        $this->getView("User", $this->template);
+    }
+
+    public function actionLang($lang){
+        Helper::varDebug($lang);
+
+        if(!CultureHelper::isSupportedLang($lang)){
+            $lang = CultureHelper::$defaultLang;
+        }
+
+        setcookie('lang', $lang, '/');
+        $_SESSION['lang'] = $lang;
+
+        header("Location: ".$_SERVER["HTTP_REFERER"]);
+        die();
     }
 
     private function formValidate($array){
