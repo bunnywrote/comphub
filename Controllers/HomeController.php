@@ -11,17 +11,13 @@ class HomeController extends Controller {
         $this->template = "index";
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
 
-        $this->viewBag['categories'] = $this->mapCategoriesToUrls(Category::getAllByParentId());
         $this->viewBag['lastItems'] = Product::getLatestProducts();
         // TODO get top sellers from CartItem
         $this->viewBag['topSeller'] = Product::getTopSeller();
 
         if(isset($_SESSION['logged_in']))
         {
-            $session = Session::getBySessId($_SESSION['sessid']);
-            $payment = Payment::getPaymentByUserId($session->userId);
-            if($payment !== null)
-                $this->viewBag['cartItems'] = $session !== null ? CartItem::getItems($payment->cartId) : null;
+            $this->viewBag['cartItems'] = CartItem::getItemsWithProducts($_SESSION['sessid']);
         }
 
         $this->getView("Home", $this->template);

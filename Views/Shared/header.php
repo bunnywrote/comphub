@@ -111,8 +111,8 @@
             <div class="col-xs-12 hidden-xs">
                 <?php
 //                Helper::varDebug($this->viewBag);
-//                if(isset($this->viewBag['categories']))
-//                    Breadcrumbs::widget($this->viewBag['categories'])
+                if(isset($this->viewBag['categories']))
+                    Breadcrumbs::widget($this->viewBag['categories'])
                 ?>
             </div>
         </nav>

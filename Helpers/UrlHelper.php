@@ -2,8 +2,13 @@
 
 class UrlHelper
 {
-    public static function categoryToUrl(int $id)
+    public static function getCategoryUrl(int $id)
     {
-        return "?type=category&id=".$id;
+        return "/category/show/".$id;
+    }
+
+    public static function getProductUrl(int $id)
+    {
+        return "/product/show/".$id;
     }
 }

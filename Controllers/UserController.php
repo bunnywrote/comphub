@@ -117,8 +117,8 @@ class UserController extends Controller{
         $this->getView("User", $this->template);
     }
 
-    public function actionLang($lang){
-        Helper::varDebug($lang);
+    public function actionLang($params){
+        $lang = $params[0];
 
         if(!CultureHelper::isSupportedLang($lang)){
             $lang = CultureHelper::$defaultLang;

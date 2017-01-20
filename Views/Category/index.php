@@ -13,7 +13,7 @@
                         </div>
                         <div class="article-description">
                             <span>
-                                <a href="<?=Helper::getProductUrl($value->id)?>">
+                                <a href="<?=UrlHelper::getProductUrl($value->id)?>">
                                     <h2><?=$value->name?></h2>
                                 </a>
                             </span>
@@ -21,7 +21,7 @@
                             <p>Specification: <?=$value->descrEN?></p>
                         </div>
                         <div class="article-buy">
-                            <form action="?type=cart" method="post">
+                            <form action="/cart/add/" method="post">
                                 <p><label>Count</label></p>
                                 <p>
                                     <input type="number" name="count" min="1" value="1" required>

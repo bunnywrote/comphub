@@ -61,7 +61,7 @@ header a{
 }
 
 #langs span{
-    color: black;
+    color: yellow;
     font-weight: bold;
     padding-right: 1em;
 }
@@ -69,6 +69,8 @@ header a{
 #langs li{
     display: flex;
     align-items: center;
+    text-transform: uppercase;
+    font-size: .7em;
 }
 
 #langs a{
@@ -176,6 +178,13 @@ footer{
 .user-data a{
     text-decoration: none !important;
     margin-left: auto;
+}
+
+#cart{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .user-cart{

@@ -54,8 +54,10 @@ class Category extends BaseEntity{
         return $categories;
     }
 
-    public static function getAllByParentId($id = 0)
+    public static function getAllByParentId($id)
     {
+        if($id === 0) return null;
+
         //todo sanity
         $result = DB::doQuery('SELECT * FROM '.self::$tableName.' WHERE parentId='.$id);
 

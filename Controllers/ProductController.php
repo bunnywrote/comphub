@@ -2,8 +2,9 @@
 class ProductController extends Controller{
     protected $template;
 
-    public function actionIndex(int $id)
-    {
+    public function actionShow($params){
+
+        $id = $params[0];
         $this->template = "index";
 
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();

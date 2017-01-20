@@ -11,7 +11,7 @@
                     </div>
                     <div class="article-description">
                     <span>
-                        <a href="<?=Helper::getProductUrl($value->id)?>">
+                        <a href="<?=UrlHelper::getProductUrl($value->id)?>">
                             <h4><?=$value->name?></h4>
                         </a>
                     </span>

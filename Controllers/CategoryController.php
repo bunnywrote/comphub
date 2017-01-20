@@ -5,8 +5,9 @@ class CategoryController extends Controller
 {
     protected $template;
 
-    public function actionIndex(int $id)
+    public function actionShow($params)
     {
+        $id = $params[0];
         $this->template = "index";
 
         $this->viewBag['menuItems'] = Category::getFirstLevelCategories();
@@ -16,6 +17,8 @@ class CategoryController extends Controller
         if(isset($_SESSION['sessid']))
             $this->viewBag['cartItems'] = CartItem::getItemsWithProducts($_SESSION['sessid']);
 
+//        Helper::varDebug($this->viewBag);
+
         $this->getView("Category", $this->template);
     }
 
@@ -24,28 +27,6 @@ class CategoryController extends Controller
         $this->template = "error";
 
         $this->getView("Category", $this->template);
-    }
-
-    private function mapCategoriesToUrls($categories)
-    {
-        $result = array();
-        
-        //TODO beautify
-        foreach($categories as $key => $value){
-            switch($_SESSION['lang']){
-                case 'de':
-                    $result[$value->nameDE] = "?type=category&id=".$value->id;
-                    break;
-                case 'fr':
-                    $result[$value->nameFR] = "?type=category&id=".$value->id;
-                    break;
-                default:
-                    $result[$value->nameEN] = "?type=category&id=".$value->id;
-                    break;
-            }
-        }
-
-        return $result;
     }
 }
 ?>

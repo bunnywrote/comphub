@@ -13,9 +13,9 @@ class Router
         $this->parseUrl();
 
         Helper::varDebug($_SESSION);
-        Helper::varDebug($this->controller);
-        Helper::varDebug($this->action);
-        Helper::varDebug($this->params);
+//        Helper::varDebug($this->controller);
+//        Helper::varDebug($this->action);
+//        Helper::varDebug($this->params);
 
         if($this->controller === null){
             $controller = new HomeController();
@@ -25,13 +25,11 @@ class Router
         if(class_exists($this->controller)){
             $controller = new $this->controller();
 
-            Helper::varDebug($controller);
-
             if(method_exists($controller, $this->action) && is_callable(array($controller, $this->action))){
                 if($this->params === null){
                     $controller->{$this->action}();
                 }else{
-                    call_user_func_array(array($controller, $this->action), $this->params);
+                    call_user_func_array(array($controller, $this->action), array($this->params));
                 }
             }else{
                 $controller = new HomeController();
@@ -52,7 +50,7 @@ class Router
         $url = array_diff($url, array(''));
         $url = array_values($url);
 
-        Helper::varDebug($url);
+//        Helper::varDebug($url);
 
         $this->controller = isset($url[0]) ? $this->getControllerName($url[0]) : null;
         $this->action = isset($url[1]) ? $this->getActionName($url[1]) : null;

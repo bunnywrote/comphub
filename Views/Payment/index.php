@@ -3,42 +3,87 @@ require_once(ROOT."/Views/Shared/header.php");
 ?>
 
     <main class="row reverse-sm">
-        <section class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <h3>To be implemented</h3>
-            <?php if(isset($this->viewBag["products"])):?>
-                <?php foreach($this->viewBag["products"] as $key=>$value): ?>
-                    <article>
-                        <div class="article-image">
-                            <image src="assets/images/placeholder.png">
-                        </div>
-                        <div class="article-description">
-                    <span>
-                        <a href="<?=Helper::getProductUrl($value->id)?>">
-                            <h2><?=$value->name?></h2>
-                        </a>
-                    </span>
-                            <span>Price:<?=$value->price?> CHF</span>
-                            <p>Specification: <?=$value->descrEN?>'</p>
-                        </div>
-                        <div class="article-buy">
-                            <form action="?type=cart" method="post">
-                                <p><label>Count</label></p>
-                                <p>
-                                    <input type="number" name="count" min="1" value="1" required>
-                                </p>
-                                <input type="hidden" name="price" value="<?=$value->price?>">
-                                <input type="hidden" name="id" value="<?=$value->id?>">
-                                <input class="btn" type="submit" value="Buy">
-                                <!--onclick="alert('submit');event.preventDefault();" -->
-                            </form>
-                        </div>
-                    </article>
-                <?php endforeach; ?>
-            <?php endif;?>
+        <section class="col-xs-12 col-sm-12 col-md-8 col-lg-8" >
+            <div class="user-cart">
+                <div class="title">
+                    <h3>
+                        <span class="fa fa-shopping-cart"></span>
+                        <?=Localizer::translate('Cart items')?>
+                    </h3>
+                </div>
+                <?php if(count($this->viewBag["cartItems"]) > 0): ?>
+                    <div>
+                        <ul>
+                            <?php //Helper::varDebug(ShoppingCart::$items)?>
+                            <?php foreach($this->viewBag["cartItems"] as $key => $value): ?>
+                                <li class="cart-item">
+                                    <div class="cart-item-details">
+                                        <img class="thumbnail" src="/assets/images/placeholder.png">
+                                        <div>
+                                            <div class="item-name"><?=$value->name ?></div>
+                                            <div class="item-descr"><?= CultureHelper::getProperty($value, "descr")?></div>
+                                            <div class="item-count">
+                                                <p>
+                                                    <a class="item-quantity" href="/cart/remove/<?=$value->id?>">
+                                                        <span class="fa fa-minus-circle"></span>
+                                                    </a>
+                                                    <input type="number" value="<?=$value->quantity?>">
+                                                    <a class="item-quantity" href="/cart/add/<?=$value->id?>">
+                                                        <span class="fa fa-plus-circle"></span>
+                                                    </a>
+                                                    <?=$value->price * $value->quantity?>
+                                                    <a class="item-quantity" href="/cart/delete/<?=$value->id?>">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div>
+                        <?php
+                            $sum = 0;
+                            foreach($this->viewBag["cartItems"] as $key => $value){
+                                $sum += $value->price * $value->quantity;
+                            }
+                        ?>
+                        <span><?=Localizer::translate('Total price: ')?></span>
+                        <b><?=$sum?></b>
+                        <span>CHF</span>
+                    </div>
+                    <div>
+                        <form action="/payment/shipping" method="post">
+                            <div>
+                                <h3>
+                                    <span class="fa fa-money"></span>
+                                    <?=Localizer::translate('Payment method')?>
+                                </h3>
+
+                                <input type="radio" name="payment" value="by delivery" /><?=Localizer::translate('By delivery')?><br />
+                                <input type="radio" name="payment" value="credit card" /><?=Localizer::translate('Credit card')?><br />
+                                <input type="radio" name="payment" value="pay pal" /><?=Localizer::translate('PayPal')?><br />
+
+                                <input type="checkbox" name="gift" value="true" /><?=Localizer::translate('Gift box')?><br />
+                            </div>
+                            <input class="btn" type="submit" value="<?=Localizer::translate('To Shipping')?>">
+                        </form>
+                    </div>
+
+                <?php else:?>
+                    <span><?=Localizer::translate("Add items to your cart")?></span>
+                    <a href="/"><?=Localizer::translate("To shop")?></a>
+                <?php endif;?>
+            </div>
+
         </section>
         <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h3>To be implemented</h3>
-
+            <?php
+                if(isset($this->viewBag['topSeller']))
+                    TopSellerList::widget($this->viewBag['topSeller']);
+            ?>
         </aside>
     </main>
 

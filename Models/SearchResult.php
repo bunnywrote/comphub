@@ -13,7 +13,7 @@ class SearchResult extends BaseEntity
 //        $this->image = $product->image;
 
         // to generate url use the helping method
-        $this->url = Helper::getProductUrl($product->id);
+        $this->url = UrlHelper::getProductUrl($product->id);
     }
 
 }
