@@ -13,5 +13,18 @@
 	"Cart items" : "Warenkorb",
 	"New products" : "Neue Artikel",
 	"To details" : "Zu Details",
-	"Top Sellers" : "Meist gekauft"
+	"Top Sellers" : "Meist gekauft",
+	"To Shipping" : "Versenden",
+	"Add items to your cart" : "In Warenkorb hinzufügen",
+	"To shop" : "Zum Einkaufen",
+	"Shipping address" : "Versandadresse",
+	"Payment method" : "Zalungsart",
+	"City" : "Stadt",
+	"State" : "Staat",
+	"Street" : "Strasse",
+	"Zip" : "PLZ",
+	"To Confirm" : "Bestätigen",
+	"Your order" : "Deine Bestellungen",
+	"Confirm": "Bestätigen",
+	"Your order will be shipped" : "Deine Bestellung wird bald versendet"
 }

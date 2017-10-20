@@ -50,6 +50,8 @@ class CartController extends Controller
             $payment->userId = $session->userId;
             $payment->cartId = $cartId;
             $payment->amount = $cart->totalCost;
+            $payment->paid = 0;
+            $payment->gift = 0;
             Payment::create($payment);
         }else{
             $cart = Cart::getById($payment->cartId);

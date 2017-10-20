@@ -7,7 +7,7 @@
         <?php if(isset($this->viewBag['product'])):?>
             <div class="sectionOverview">
                 <div class="productImage">
-                    <img src="assets/images/AppleMacBookPro.jpg">
+                    <img src="/assets/images/AppleMacBookPro.jpg">
                 </div>
                 <div class="shortSpecification">
                     <span><h2><?= $this->viewBag['product']->name ;?></h2></span>
@@ -16,7 +16,7 @@
                     <span><h3>Price: </h3><?= $this->viewBag['product']->price ;?> CHF</span>
                 </div>
                 <div class="article-buy">
-                    <form action="?type=cart" method="post">
+                    <form action="/cart/add/<?=$this->viewBag['product']->id?>" method="post">
                         <p><label>Count</label></p>
                         <p>
                             <input type="number" name="count" min="1" value="1" required>

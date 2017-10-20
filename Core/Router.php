@@ -12,11 +12,6 @@ class Router
 
         $this->parseUrl();
 
-        Helper::varDebug($_SESSION);
-//        Helper::varDebug($this->controller);
-//        Helper::varDebug($this->action);
-//        Helper::varDebug($this->params);
-
         if($this->controller === null){
             $controller = new HomeController();
             $controller->actionIndex();
@@ -49,8 +44,6 @@ class Router
         $url = explode('/', $_SERVER['REQUEST_URI']);
         $url = array_diff($url, array(''));
         $url = array_values($url);
-
-//        Helper::varDebug($url);
 
         $this->controller = isset($url[0]) ? $this->getControllerName($url[0]) : null;
         $this->action = isset($url[1]) ? $this->getActionName($url[1]) : null;

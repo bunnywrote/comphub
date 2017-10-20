@@ -11,7 +11,7 @@ require_once(ROOT."/Views/Shared/header.php");
                         <?=Localizer::translate('Cart items')?>
                     </h3>
                 </div>
-                <?php if(count($this->viewBag["cartItems"]) > 0): ?>
+                <?php if(isset($this->viewBag["cartItems"]) && count($this->viewBag["cartItems"]) > 0): ?>
                     <div>
                         <ul>
                             <?php //Helper::varDebug(ShoppingCart::$items)?>
@@ -43,6 +43,7 @@ require_once(ROOT."/Views/Shared/header.php");
                             <?php endforeach; ?>
                         </ul>
                     </div>
+
                     <div>
                         <?php
                             $sum = 0;
@@ -50,13 +51,13 @@ require_once(ROOT."/Views/Shared/header.php");
                                 $sum += $value->price * $value->quantity;
                             }
                         ?>
-                        <span><?=Localizer::translate('Total price: ')?></span>
-                        <b><?=$sum?></b>
-                        <span>CHF</span>
-                    </div>
-                    <div>
+                        <div class="total-price">
+                            <?=Localizer::translate('Total price:')?>
+                            <b><?=$sum?></b>CHF
+
+                        </div>
                         <form action="/payment/shipping" method="post">
-                            <div>
+                            <div class="payment-options">
                                 <h3>
                                     <span class="fa fa-money"></span>
                                     <?=Localizer::translate('Payment method')?>
@@ -65,6 +66,11 @@ require_once(ROOT."/Views/Shared/header.php");
                                 <input type="radio" name="payment" value="by delivery" /><?=Localizer::translate('By delivery')?><br />
                                 <input type="radio" name="payment" value="credit card" /><?=Localizer::translate('Credit card')?><br />
                                 <input type="radio" name="payment" value="pay pal" /><?=Localizer::translate('PayPal')?><br />
+
+                                <h3>
+                                    <span class="fa fa-gift"></span>
+                                    <?=Localizer::translate('Other')?>
+                                </h3>
 
                                 <input type="checkbox" name="gift" value="true" /><?=Localizer::translate('Gift box')?><br />
                             </div>

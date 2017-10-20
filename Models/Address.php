@@ -5,7 +5,7 @@ class Address extends BaseEntity
 {
     private static $tableName = "address";
 
-    public $id, $street, $city, $state, $zip;
+    public $id, $userId, $street, $city, $state, $zip;
 
     public function __construct()
     {
@@ -16,12 +16,13 @@ class Address extends BaseEntity
     public static function create(Address $address)
     {
         $query =
-            "INSERT INTO " . self::$tableName . "(street, city, state, zip) VALUES (?,?,?,?)";
+            "INSERT INTO " . self::$tableName . "(userId, street, city, state, zip) VALUES (?,?,?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'sssi',
+            'isssi',
+            $address->userId,
             $address->street,
             $address->city,
             $address->state,
@@ -40,9 +41,15 @@ class Address extends BaseEntity
         //TODO implement
     }
 
-    public function get($id)
+    public function getByUserId($id)
     {
-        return DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id);
+        $result =  DB::doQuery('SELECT * FROM ' . self::$tableName . ' WHERE userId = ' . $id.' LIMIT 1');
+
+        if($result != null){
+            return $result->fetch_object(__CLASS__);
+        }
+
+        return null;
     }
 
     public function getAllAddresses()

@@ -5,7 +5,7 @@ class Payment extends BaseEntity
 {
     private static $tableName = "payments";
 
-    public $id, $type, $amount, $userId, $cartId;
+    public $id, $type, $amount, $userId, $cartId, $paid, $gift;
 
     public function __construct()
     {
@@ -14,16 +14,17 @@ class Payment extends BaseEntity
 
     public static function create(Payment $payment)
     {
-        $query = "INSERT INTO " . self::$tableName . "(type, amount, userId, cartId) VALUES (?,?,?,?)";
+        $query = "INSERT INTO " . self::$tableName . "(type, amount, userId, cartId, gift) VALUES (?,?,?,?,?)";
 
         $preparedQuery = DB::getDbConnection()->prepare($query);
 
         $success = $preparedQuery->bind_param(
-            'siii',
+            'siiii',
             $payment->type,
             $payment->amount,
             $payment->userId,
-            $payment->cartId
+            $payment->cartId,
+            $payment->gift
         );
 
         if(!$success){
@@ -31,6 +32,13 @@ class Payment extends BaseEntity
             return false;
         }
         $preparedQuery->execute();
+    }
+
+    public static function update(Payment $payment)
+    {
+        $query = "UPDATE ".self::$tableName." SET type='".$payment->type.
+                 "', paid=".$payment->paid.", gift=".$payment->gift." WHERE id=".$payment->id;
+        $result = DB::doQuery($query);
     }
 
     public static function getPaymentByUserId(int $userId)

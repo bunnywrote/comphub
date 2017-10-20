@@ -278,7 +278,7 @@ footer{
     margin-top: 12px;
 }
 
-.login-input input{
+.address-input input, .login-input input{
     font-size:18px;
     padding:10px 10px 10px 5px;
     display:block;
@@ -288,7 +288,7 @@ footer{
     border-radius: 0px;
 }
 
-.login-input input:focus
+.address-input input:focus, .login-input input:focus
 {
     outline:none;
 }
@@ -305,6 +305,11 @@ footer{
     transition:0.2s ease all;
     -moz-transition:0.2s ease all;
     -webkit-transition:0.2s ease all;
+}
+
+.address-input{
+    margin: 1em 0;
+
 }
 
 .sectionOverview {
@@ -326,6 +331,22 @@ footer{
     padding: 10px;
     margin: 10px;
     margin-right: 10px;
+}
+
+.total-price{
+    text-align: right;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid black;
+}
+
+.payment-options{
+    display: block;
+    text-align: left;
+}
+
+.payment-options h3{
+    margin: 1em 0;
 }
 
 /*from 62em to smaller*/

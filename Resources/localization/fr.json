@@ -13,5 +13,18 @@
 	"Cart items": "Articles de panier",
 	"New products" : "Produits nouveaux",
 	"To details" : "Aux détails",
-	"Top Sellers" : "Meilleures ventes"
+	"Top Sellers" : "Meilleures ventes",
+	"To Shipping" : "À l'expédition",
+	"Add items to your cart" : "Ajouter des articles à votre panier",
+	"To shop" : "Faire des courses",
+	"Shipping address" : "Adresse de livraison",
+	"Payment method" : "Mode de paiement",
+	"City" : "Ville",
+	"State" : "Etat",
+	"Street" : "Rue",
+	"Zip" : "ZIP",
+	"To Confirm" : "Confirmer",
+	"Your order" : "Votre commande",
+	"Confirm": "Confirmer",
+	"Your order will be shipped" : "Votre commande sera expédiée"
 }

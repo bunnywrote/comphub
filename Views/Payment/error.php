@@ -12,7 +12,7 @@ require_once(ROOT."/Views/Shared/header.php");
                     </h3>
                 </div>
                 <div class="address">
-                    <form action="/payment/confirm" method="post">
+                    <form>
                         <div class="address-input">
                             <label><?=Localizer::translate("City")?></label>
                             <input type="text" name="city">
@@ -32,16 +32,14 @@ require_once(ROOT."/Views/Shared/header.php");
                             <label><?=Localizer::translate("Zip")?></label>
                             <input type="number" pattern="[0-9]{4}" name="zip">
                         </div>
-
-                        <input class="btn" type="submit" value="<?=Localizer::translate('To Confirm')?>">
                     </form>
                 </div>
             </div>
         </section>
         <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <?php
-                if(isset($this->viewBag['topSeller']))
-                    TopSellerList::widget($this->viewBag['topSeller']);
+            if(isset($this->viewBag['topSeller']))
+                TopSellerList::widget($this->viewBag['topSeller']);
             ?>
         </aside>
     </main>

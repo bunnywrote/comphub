@@ -9,7 +9,7 @@
                 <?php foreach($this->viewBag["products"] as $key=>$value): ?>
                     <article>
                         <div class="article-image">
-                            <image src="assets/images/placeholder.png">
+                            <image src="/assets/images/placeholder.png">
                         </div>
                         <div class="article-description">
                             <span>
@@ -38,10 +38,10 @@
         </div>
     </section>
     <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <?php
-            if(isset($this->viewBag['cartItems']))
-                ShoppingCart::widget($this->viewBag['cartItems'])
-        ?>
+            <?php
+                if(isset($this->viewBag['cartItems']))
+                    ShoppingCart::widget($this->viewBag['cartItems'])
+            ?>
     </aside>
 </main>
 

@@ -7,7 +7,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <article>
                     <div class="article-image">
-                        <image src="assets/images/placeholder.png">
+                        <image src="/assets/images/placeholder.png">
                     </div>
                     <div class="article-description">
                     <span>
