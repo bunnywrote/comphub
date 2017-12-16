@@ -10,7 +10,7 @@
                     <img src="http://www.aviatorcameragear.com/wp-content/uploads/2012/07/placeholder-990x618.jpg" alt="">
                     <div class="slider__caption">
                         <?= $value->name?>
-                        <a href="<?= $value->id?>"><?=Localizer::translate('To details')?></a>
+                        <a href="<?= UrlHelper::getProductUrl($value->id)?>"><?=Localizer::translate('To details')?></a>
                     </div>
                 </div>
             <?php endforeach;?>
